@@ -4,6 +4,8 @@
  */
 package getjob;
 
+import admin.LoginAdmin;
+
 /**
  *
  * @author jj
@@ -15,5 +17,7 @@ public class GetJob {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        LoginAdmin loginAdmin = new LoginAdmin();
+        loginAdmin.setVisible(true);
     }
 }
