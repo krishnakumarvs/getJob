@@ -38,29 +38,34 @@ public class LoginPageCompany extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 3, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 3, 24));
         jLabel1.setForeground(new java.awt.Color(0, 0, 204));
         jLabel1.setText("LOGIN  PAGE");
 
-        jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
         jLabel2.setText("USER  NAME              :");
 
-        jLabel4.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
         jLabel4.setText("PASSWORD                :");
 
         rememberPasswordCheckBox.setText("Rememer  Passwod");
 
-        userNameTextField.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        userNameTextField.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
         userNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameTextFieldActionPerformed(evt);
             }
         });
 
-        loginButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        loginButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
         loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
-        clearButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        clearButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
         clearButton.setText("Clear");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -84,11 +89,11 @@ public class LoginPageCompany extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(loginButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
                 .addComponent(clearButton)
                 .addGap(72, 72, 72))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(193, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(156, 156, 156))
         );
@@ -135,6 +140,10 @@ public class LoginPageCompany extends javax.swing.JFrame {
     private void userNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameTextFieldActionPerformed
+
+private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments

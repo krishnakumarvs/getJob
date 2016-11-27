@@ -17,7 +17,7 @@ public class GetJob {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        LoginAdmin loginAdmin = new LoginAdmin();
-        loginAdmin.setVisible(true);
+        start_frame frm = new start_frame();
+     frm.setVisible(true);
     }
 }
