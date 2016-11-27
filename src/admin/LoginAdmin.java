@@ -15,7 +15,7 @@ public class LoginAdmin extends javax.swing.JFrame {
      */
     public LoginAdmin() {
         initComponents();
-    }
+   this.setLocationRelativeTo(null); }
 
     /**
      * This method is called from within the constructor to initialize the form.

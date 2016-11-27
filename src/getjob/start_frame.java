@@ -22,7 +22,7 @@ public class start_frame extends javax.swing.JFrame {
     /** Creates new form start_frame */
     public start_frame() {
         initComponents();
-    }
+  this.setLocationRelativeTo(null);  }
 
     /** This method is called from within the constructor to
      * initialize the form.
