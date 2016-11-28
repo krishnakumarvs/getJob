@@ -15,7 +15,7 @@ public class LoginPageCompany extends javax.swing.JFrame {
      */
     public LoginPageCompany() {
         initComponents();
-    }
+  this.setLocationRelativeTo(null);  }
 
     /**
      * This method is called from within the constructor to initialize the form.
