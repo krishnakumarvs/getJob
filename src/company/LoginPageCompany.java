@@ -4,18 +4,29 @@
  */
 package company;
 
+import db.Dbcon;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jj
  */
 public class LoginPageCompany extends javax.swing.JFrame {
 
+    String name;
+    String pass;
+
     /**
      * Creates new form LoginPage
      */
     public LoginPageCompany() {
         initComponents();
-  this.setLocationRelativeTo(null);  }
+        this.setLocationRelativeTo(null);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,26 +49,26 @@ public class LoginPageCompany extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 3, 24));
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 204));
         jLabel1.setText("LOGIN  PAGE");
 
-        jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
+        jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel2.setText("USER  NAME              :");
 
-        jLabel4.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
+        jLabel4.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel4.setText("PASSWORD                :");
 
         rememberPasswordCheckBox.setText("Rememer  Passwod");
 
-        userNameTextField.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
+        userNameTextField.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         userNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameTextFieldActionPerformed(evt);
             }
         });
 
-        loginButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
+        loginButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,8 +76,13 @@ public class LoginPageCompany extends javax.swing.JFrame {
             }
         });
 
-        clearButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
+        clearButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,8 +158,35 @@ public class LoginPageCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_userNameTextFieldActionPerformed
 
 private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-// TODO add your handling code here:
+        try {
+            name = userNameTextField.getText();
+            pass = passwordField.getText();
+
+            String sql = "select * from tbl_company where name='" + name + "' and password='" + pass + "'";
+            ResultSet rs;
+            Dbcon db = new Dbcon();
+            rs = db.select(sql);
+            if (rs.next()) {
+
+                new HomePageCompany().setVisible(true);
+                this.dispose();
+
+
+            } else {
+                JOptionPane.showMessageDialog(this, "User Name or Password incorrect");
+                userNameTextField.setText("");
+                passwordField.setText("");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginPageCompany.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        userNameTextField.setText("");
+        passwordField.setText("");
+    }//GEN-LAST:event_clearButtonActionPerformed
 
     /**
      * @param args the command line arguments

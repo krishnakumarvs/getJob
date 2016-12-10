@@ -12,7 +12,7 @@ public class Dbcon {
     public Dbcon() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost/getjob_db", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/getjob_db", "root", "root");
             stmt = con.createStatement();
         } catch (Exception ex) {
             ex.printStackTrace();
