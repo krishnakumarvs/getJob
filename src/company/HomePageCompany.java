@@ -210,7 +210,7 @@ int id;
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         this.getContentPane().removeAll();
-        AnnouncementAdd announcementAdd = new AnnouncementAdd();
+        AnnouncementAdd announcementAdd = new AnnouncementAdd(id,this);
         this.add(announcementAdd);
         announcementAdd.setVisible(true);
         this.revalidate();

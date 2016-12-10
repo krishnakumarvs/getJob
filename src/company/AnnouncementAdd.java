@@ -11,12 +11,18 @@ import db.Dbcon;
  * @author jj
  */
 public class AnnouncementAdd extends javax.swing.JPanel {
-
+int id;
+HomePageCompany parentFrame;
     /**
      * Creates new form AddJobAnnouncement
      */
     public AnnouncementAdd() {
         initComponents();
+    }
+     public AnnouncementAdd(int id1,HomePageCompany parentFrame) {
+        initComponents();
+        id=id1;
+        this.parentFrame=parentFrame;
     }
 
     /**
@@ -189,10 +195,14 @@ public class AnnouncementAdd extends javax.swing.JPanel {
     }//GEN-LAST:event_placeTextFieldActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        String sql="insert into tbl_announcement values('"+postTextField.getText()+"','"+vacancySpinner.getToolTipText()+"','"+qualificationTextField.getText()+"','"+dateTextField.getText()+"','"+placeTextField.getText()+"','"+contactTextField.getText()+"')";
+        String sql="insert into tbl_announcement(post,vacancy,qualification,date,place,contact,companyId) values('"+postTextField.getText()+"','"+vacancySpinner.getValue()+"','"+qualificationTextField.getText()+"','"+dateTextField.getText()+"','"+placeTextField.getText()+"','"+contactTextField.getText()+"','"+id+"')";
         int n;
         Dbcon db=new Dbcon();
-        db.insert(sql);// TODO add your handling code here:
+        db.insert(sql);
+         parentFrame.getContentPane().removeAll();
+        parentFrame.repaint();
+        parentFrame.revalidate();
+        // TODO add your handling code here:
     }//GEN-LAST:event_submitButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
