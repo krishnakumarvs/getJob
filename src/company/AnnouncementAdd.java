@@ -4,6 +4,8 @@
  */
 package company;
 
+import db.Dbcon;
+
 /**
  *
  * @author jj
@@ -53,7 +55,7 @@ public class AnnouncementAdd extends javax.swing.JPanel {
         jLabel3.setText("Vacancy                           :");
 
         jLabel4.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
-        jLabel4.setText("Date                                 :");
+        jLabel4.setText("Last Date                         :");
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         jLabel5.setText("Place                                :");
@@ -86,6 +88,11 @@ public class AnnouncementAdd extends javax.swing.JPanel {
 
         submitButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
 
         cancelButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         cancelButton.setText("Cancel");
@@ -180,6 +187,13 @@ public class AnnouncementAdd extends javax.swing.JPanel {
     private void placeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_placeTextFieldActionPerformed
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        String sql="insert into tbl_announcement values('"+postTextField.getText()+"','"+vacancySpinner.getToolTipText()+"','"+qualificationTextField.getText()+"','"+dateTextField.getText()+"','"+placeTextField.getText()+"','"+contactTextField.getText()+"')";
+        int n;
+        Dbcon db=new Dbcon();
+        db.insert(sql);// TODO add your handling code here:
+    }//GEN-LAST:event_submitButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;

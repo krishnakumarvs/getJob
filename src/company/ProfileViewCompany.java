@@ -19,23 +19,21 @@ private void loadProfileCompany(){
  * @author jj
  */
 public class ProfileViewCompany extends javax.swing.JPanel {
-String name;
-String pass;
+int id;
     /**
      * Creates new form ViewProfile
      */
     public ProfileViewCompany() {
         initComponents();
     }
-     public ProfileViewCompany(String name1,String pass1) {
+     public ProfileViewCompany(int id1) {
         initComponents();
-        name=name1;
-        pass=pass1;
+        id=id1;
         loadProfileCompany();
      }
       private void loadProfileCompany() {
         try {
-            String sql = "select * from tbl_company where name='" + name + "' and password='" + pass + "'";
+            String sql = "select * from tbl_company where id='" + id+ "'";
             ResultSet rs;
             Dbcon db = new Dbcon();
             rs = db.select(sql);

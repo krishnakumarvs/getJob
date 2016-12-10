@@ -15,8 +15,7 @@ import java.util.logging.Logger;
  * @author jj
  */
 public class ProfileUpdate extends javax.swing.JPanel {
-String name;
-String pass;
+int id;
 
 HomePageCompany parentFrame;
     
@@ -26,10 +25,9 @@ HomePageCompany parentFrame;
 
     }
     
-     public ProfileUpdate(String name1,String pass1, HomePageCompany parentFrame) {
+     public ProfileUpdate(int id1, HomePageCompany parentFrame) {
         initComponents();
-        name=name1;
-        pass=pass1;
+        id=id1;
         this.parentFrame = parentFrame;
         loadProfileCompany();
 
@@ -39,7 +37,7 @@ HomePageCompany parentFrame;
 
     private void loadProfileCompany() {
         try {
-            String sql = "select * from tbl_company where name='" + name + "' and password='" + pass + "'";
+            String sql = "select * from tbl_company where id='" + id + "' ";
             ResultSet rs;
             Dbcon db = new Dbcon();
             rs = db.select(sql);
@@ -224,7 +222,7 @@ HomePageCompany parentFrame;
     }//GEN-LAST:event_emailIdTextFieldActionPerformed
 
     private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
-        String sql1="update tbl_company set name='"+nameTextField.getText()+"',address='"+addressTextField.getText()+"',phone_no='"+phoneTextField.getText()+"',mail_id='"+emailIdTextField.getText()+"',discription='"+discriptionTextArea.getText()+"' where name='"+name+"'";
+        String sql1="update tbl_company set name='"+nameTextField.getText()+"',address='"+addressTextField.getText()+"',phone_no='"+phoneTextField.getText()+"',mail_id='"+emailIdTextField.getText()+"',discription='"+discriptionTextArea.getText()+"' where id='"+id+"'";
         int n;
         Dbcon db=new Dbcon();
         db.insert(sql1);

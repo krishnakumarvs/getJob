@@ -170,8 +170,8 @@ private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         Dbcon db = new Dbcon();
         rs = db.select(sql);
         if (rs.next()) {
-
-            new HomePageCompany(name,pass).setVisible(true);
+            int id=rs.getInt("id");
+            new HomePageCompany(id).setVisible(true);
             this.dispose();
 
 
