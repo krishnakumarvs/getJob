@@ -62,11 +62,14 @@ public class LoginPageCompany extends javax.swing.JFrame {
         rememberPasswordCheckBox.setText("Rememer  Passwod");
 
         userNameTextField.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        userNameTextField.setText("Dream");
         userNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameTextFieldActionPerformed(evt);
             }
         });
+
+        passwordField.setText("dream12345");
 
         loginButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         loginButton.setText("Login");
@@ -158,28 +161,28 @@ public class LoginPageCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_userNameTextFieldActionPerformed
 
 private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        try {
-            name = userNameTextField.getText();
-            pass = passwordField.getText();
+    try {
+        name = userNameTextField.getText();
+        pass = passwordField.getText();
 
-            String sql = "select * from tbl_company where name='" + name + "' and password='" + pass + "'";
-            ResultSet rs;
-            Dbcon db = new Dbcon();
-            rs = db.select(sql);
-            if (rs.next()) {
+        String sql = "select * from tbl_company where name='" + name + "' and password='" + pass + "'";
+        ResultSet rs;
+        Dbcon db = new Dbcon();
+        rs = db.select(sql);
+        if (rs.next()) {
 
-                new HomePageCompany().setVisible(true);
-                this.dispose();
+            new HomePageCompany(name,pass).setVisible(true);
+            this.dispose();
 
 
-            } else {
-                JOptionPane.showMessageDialog(this, "User Name or Password incorrect");
-                userNameTextField.setText("");
-                passwordField.setText("");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginPageCompany.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            JOptionPane.showMessageDialog(this, "User Name or Password incorrect");
+            userNameTextField.setText("");
+            passwordField.setText("");
         }
+    } catch (SQLException ex) {
+        Logger.getLogger(LoginPageCompany.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
 }//GEN-LAST:event_loginButtonActionPerformed
 

@@ -5,9 +5,17 @@ import java.awt.FlowLayout;
 import javax.swing.JOptionPane;
 
 public class HomePageCompany extends javax.swing.JFrame {
-
+String name;
+String pass;
     public HomePageCompany() {
         initComponents();
+        this.setLayout(new FlowLayout());
+        this.setLocationRelativeTo(null);
+    }
+     public HomePageCompany(String name1,String pass1) {
+        initComponents();
+        name=name1;
+        pass=pass1;
         this.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
     }
@@ -176,7 +184,8 @@ public class HomePageCompany extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         this.getContentPane().removeAll();
-        ProfileViewCompany profileViewCompany = new ProfileViewCompany();
+        ProfileViewCompany profileViewCompany;
+        profileViewCompany = new ProfileViewCompany();
         this.add(profileViewCompany);
         profileViewCompany.setVisible(true);
         this.revalidate();
@@ -185,7 +194,7 @@ public class HomePageCompany extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         this.getContentPane().removeAll();
-        ProfileUpdate profileUpdate = new ProfileUpdate();
+        ProfileUpdate profileUpdate = new ProfileUpdate(name,pass,this);
         this.add(profileUpdate);
         profileUpdate.setVisible(true);
         this.revalidate();
