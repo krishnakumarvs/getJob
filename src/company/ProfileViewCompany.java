@@ -31,6 +31,7 @@ String pass;
         initComponents();
         name=name1;
         pass=pass1;
+        loadProfileCompany();
      }
       private void loadProfileCompany() {
         try {
