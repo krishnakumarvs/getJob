@@ -185,7 +185,7 @@ String pass;
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         this.getContentPane().removeAll();
         ProfileViewCompany profileViewCompany;
-        profileViewCompany = new ProfileViewCompany();
+        profileViewCompany = new ProfileViewCompany(name,pass);
         this.add(profileViewCompany);
         profileViewCompany.setVisible(true);
         this.revalidate();
