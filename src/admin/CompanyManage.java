@@ -4,19 +4,48 @@
  */
 package admin;
 
+import db.Dbcon;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jj
  */
 public class CompanyManage extends javax.swing.JPanel {
-
+DefaultTableModel model;
     /**
      * Creates new form ManageCompany
      */
     public CompanyManage() {
         initComponents();
+        load_updateprofile();
     }
+ private void load_updateprofile(){
+        try {
+            Dbcon db=new Dbcon();
+            ResultSet rs=db.select("select (name,mail_id,phone_no,address)from tbl_company");
+            model=(DefaultTableModel)companyTable.getModel();
+            String arr[]=new String[4];
+            while(rs.next()){
+                String name=rs.getString("name");
+                String email=rs.getString("mail_id");
+                String phone=rs.getString("phone_no");
+                String address=rs.getString("address");
+                arr[0]=name;
+                arr[1]=email;
+                arr[2]=phone;
+                arr[3]=address;
+                model.addRow(arr);
+                
 
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

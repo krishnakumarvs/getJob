@@ -4,6 +4,9 @@
  */
 package admin;
 
+import db.Dbcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jj
@@ -36,26 +39,26 @@ public class ChangeUserNameAdmin extends javax.swing.JPanel {
         cancelButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24));
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("  USER  NAME  SETTING");
 
-        jLabel2.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         jLabel2.setText("Current  User  Name           :");
 
-        jLabel3.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         jLabel3.setText("New  User  Name               :");
 
-        jLabel4.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         jLabel4.setText("Repeat  New  Use  Name   :");
 
-        currentUserNameTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        currentUserNameTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
 
-        newUserNameTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        newUserNameTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
 
-        repeatNewUserNameTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        repeatNewUserNameTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
 
-        cancelButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        cancelButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,15 +66,20 @@ public class ChangeUserNameAdmin extends javax.swing.JPanel {
             }
         });
 
-        okButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        okButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         okButton.setText("OK");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 101, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(141, 141, 141))
             .addGroup(layout.createSequentialGroup()
@@ -93,7 +101,7 @@ public class ChangeUserNameAdmin extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addComponent(cancelButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(110, 110, 110))
         );
@@ -125,6 +133,24 @@ public class ChangeUserNameAdmin extends javax.swing.JPanel {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+String usename=currentUserNameTextField.getText();
+String newuser=newUserNameTextField.getText();
+String reuser=repeatNewUserNameTextField.getText();
+if(currentUserNameTextField.getText().equals("")|| newUserNameTextField.getText().equals("")||repeatNewUserNameTextField.getText().equals("") ){
+    JOptionPane.showMessageDialog(this, "please enter all fields");
+}
+else{
+   
+
+String sql="update  tbl_loginadmin set  username='"+newuser+"' where username='"+usename+"' ";
+int ins;
+Dbcon db=new Dbcon();
+            ins=db.insert(sql);
+           JOptionPane.showMessageDialog(this," successfully inserted" );
+}   // TODO add your handling code here:
+}//GEN-LAST:event_okButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
