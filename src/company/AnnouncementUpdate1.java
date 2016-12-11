@@ -4,6 +4,11 @@
  */
 package company;
 
+import db.Dbcon;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,15 +17,41 @@ import javax.swing.table.DefaultTableModel;
  * @author jj
  */
 public class AnnouncementUpdate1 extends javax.swing.JPanel {
-DefaultTableModel model=null;
-String e;
+
+    DefaultTableModel model = null;
+    int id;
+    String idTable;
+
     /**
      * Creates new form UpdateAnnouncement
      */
     public AnnouncementUpdate1() {
         initComponents();
+
     }
 
+    public AnnouncementUpdate1(int id1) {
+        id = id1;
+            initComponents();
+            loadTable();
+           
+    }
+private  void loadTable(){
+    try{
+    updateButton.setEnabled(false);
+            deleteButton.setEnabled(false);
+            
+            Dbcon db = new Dbcon();
+            ResultSet rs = db.select("select * from tbl_announcement where companyId='" + id + "' ");
+            model = (DefaultTableModel) announcementTable.getModel();
+            while (rs.next()) {
+                model.addRow(new String[]{rs.getString("ID"), rs.getString("date"), rs.getString("post")});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AnnouncementUpdate1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,35 +63,45 @@ String e;
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        announcementTable = new javax.swing.JTable();
+        updateButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("             JOB   ANNOUNCEMENT");
 
-        jTable1.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        announcementTable.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        announcementTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Date", "Announcement"
+                "ID", "Date", "Post"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        announcementTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                announcementTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(announcementTable);
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
-        jButton1.setText("Update");
+        updateButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
-        jButton2.setText("Delete");
+        deleteButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -76,8 +117,8 @@ String e;
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,29 +133,45 @@ String e;
                         .addContainerGap(35, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jButton1)
+                        .addComponent(updateButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(deleteButton)
                         .addGap(109, 109, 109))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
- model = (DefaultTableModel) jTable1.getModel();
-        if (model.getValueAt(jTable1.getSelectedRow(), 0).toString().equals("")) {
-          JOptionPane.showMessageDialog(this, "No data to select");
+    private void announcementTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_announcementTableMouseClicked
+        model = (DefaultTableModel) announcementTable.getModel();
+        if (model.getValueAt(announcementTable.getSelectedRow(), 0).toString().equals("")) {
+            JOptionPane.showMessageDialog(this, "No data to select");
         } else {
-            e = model.getValueAt(jTable1.getSelectedRow(),0).toString();
-            jButton1.setEnabled(true);
-            jButton2.setEnabled(true);
+            idTable = model.getValueAt(announcementTable.getSelectedRow(), 0).toString();
+            updateButton.setEnabled(true);
+            deleteButton.setEnabled(true);
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_announcementTableMouseClicked
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        String sql1 = "delete from tbl_announcement where id='" + idTable + "'";
+int n;
+Dbcon db=new Dbcon();
+n=db.insert(sql1);
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+ 
+        AnnouncementUpdate2 announcementUpdate2 = new AnnouncementUpdate2(idTable);
+        this.add(announcementUpdate2);
+        announcementUpdate2.setVisible(true);
+        this.revalidate();
+        this.repaint();         // TODO add your handling code here:
+    }//GEN-LAST:event_updateButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTable announcementTable;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
