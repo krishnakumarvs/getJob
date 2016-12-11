@@ -33,11 +33,11 @@ public class CompanyManage extends javax.swing.JPanel {
         detailsButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed", 3, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed", 3, 24));
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
         jLabel1.setText("         COMPANYS     ");
 
-        companyTable.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        companyTable.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         companyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -46,15 +46,20 @@ public class CompanyManage extends javax.swing.JPanel {
                 "Name", "Email", "Phone", "Address"
             }
         ));
+        companyTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                companyTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(companyTable);
 
-        updateButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        updateButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         updateButton.setText("Update");
 
-        detailsButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        detailsButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         detailsButton.setText("Details");
 
-        deleteButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        deleteButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         deleteButton.setText("Delete");
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,7 +72,7 @@ public class CompanyManage extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(236, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(214, 214, 214))
             .addGroup(layout.createSequentialGroup()
@@ -79,7 +84,7 @@ public class CompanyManage extends javax.swing.JPanel {
                 .addComponent(updateButton)
                 .addGap(152, 152, 152)
                 .addComponent(deleteButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
                 .addComponent(detailsButton)
                 .addGap(42, 42, 42))
         );
@@ -102,6 +107,10 @@ public class CompanyManage extends javax.swing.JPanel {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+private void companyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_companyTableMouseClicked
+
+}//GEN-LAST:event_companyTableMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable companyTable;

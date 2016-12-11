@@ -4,6 +4,11 @@
  */
 package admin;
 
+import db.Dbcon;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jj
@@ -15,6 +20,7 @@ public class LoginAdmin extends javax.swing.JFrame {
      */
     public LoginAdmin() {
         initComponents();
+       
    this.setLocationRelativeTo(null); }
 
     /**
@@ -147,11 +153,33 @@ public class LoginAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_userNameTextFieldActionPerformed
 
 private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-// TODO add your handling code here:
+        try {
+            String sql="select*from tbl_loginadmin where username='"+userNameTextField.getText()+"' and password='"+passwordField.getText()+"'";
+            ResultSet rs;
+            Dbcon db=new Dbcon();
+            rs=db.select(sql);
+            if(rs.next()){
+                new HomePageAdmin().setVisible(true);
+                this.dispose();
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"username or password");
+                userNameTextField.setText("");
+                passwordField.setText("");
+                
+                
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    
+        
 }//GEN-LAST:event_loginButtonActionPerformed
 
 private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
-// TODO add your handling code here:
+ userNameTextField.setText("");
+                passwordField.setText("");// TODO add your handling code here:
 }//GEN-LAST:event_clearButtonActionPerformed
 
     /**

@@ -171,7 +171,7 @@ public class HomePageAdmin extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
  this.getContentPane().removeAll();
-        CompanyCreate companyCreate=new CompanyCreate();
+        CompanyCreate companyCreate=new CompanyCreate(this);
         this.add(companyCreate);
         companyCreate.setVisible(true);
         this.revalidate();
