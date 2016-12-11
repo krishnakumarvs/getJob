@@ -9,12 +9,16 @@ package company;
  * @author jj
  */
 public class RequestView extends javax.swing.JPanel {
-
+int id;
     /**
      * Creates new form RequestView
      */
     public RequestView() {
         initComponents();
+    }
+     public RequestView(int id1) {
+        initComponents();
+        id=id1;
     }
 
     /**

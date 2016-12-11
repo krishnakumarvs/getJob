@@ -33,6 +33,8 @@ public class AnnouncementUpdate1 extends javax.swing.JPanel {
     public AnnouncementUpdate1(int id1) {
         id = id1;
             initComponents();
+            updateButton.setEnabled(false);
+            deleteButton.setEnabled(false);
             loadTable();
            
     }
@@ -45,7 +47,7 @@ private  void loadTable(){
             ResultSet rs = db.select("select * from tbl_announcement where companyId='" + id + "' ");
             model = (DefaultTableModel) announcementTable.getModel();
             while (rs.next()) {
-                model.addRow(new String[]{rs.getString("ID"), rs.getString("date"), rs.getString("post")});
+                model.addRow(new String[]{rs.getString("id"), rs.getString("date"), rs.getString("post")});
             }
         } catch (SQLException ex) {
             Logger.getLogger(AnnouncementUpdate1.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,6 +68,12 @@ private  void loadTable(){
         announcementTable = new javax.swing.JTable();
         updateButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
+
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
@@ -156,16 +164,31 @@ private  void loadTable(){
 int n;
 Dbcon db=new Dbcon();
 n=db.insert(sql1);
+ 
+        AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id);
+        this.getParent().add(announcementUpdate1);
+        this.setVisible(false);
+        announcementUpdate1.setVisible(true);
+        this.revalidate();
+        this.repaint(); 
+        
+       
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
- 
+        HomePageCompany.flag=1;
         AnnouncementUpdate2 announcementUpdate2 = new AnnouncementUpdate2(idTable);
-        this.add(announcementUpdate2);
+       // this.add(announcementUpdate2);
         announcementUpdate2.setVisible(true);
-        this.revalidate();
-        this.repaint();         // TODO add your handling code here:
+       // this.revalidate();
+      //  this.repaint();
+        
     }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+System.out.println("Hello");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable announcementTable;

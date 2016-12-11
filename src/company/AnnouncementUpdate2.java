@@ -1,4 +1,3 @@
-
 package company;
 
 import db.Dbcon;
@@ -8,36 +7,40 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AnnouncementUpdate2 extends javax.swing.JFrame {
-String id;
-    
- public AnnouncementUpdate2() {
+
+    String id;
+
+    public AnnouncementUpdate2() {
         initComponents();
-        
+
     }
+
     public AnnouncementUpdate2(String id1) {
         initComponents();
-        id=id1;
+        id = id1;
         loadProfileCompany();
     }
- private void loadProfileCompany() {
+
+    private void loadProfileCompany() {
         try {
             String sql = "select * from tbl_announcement where id='" + id + "' ";
             ResultSet rs;
             Dbcon db = new Dbcon();
             rs = db.select(sql);
             if (rs.next()) {
-             postTextField.setText(rs.getString("post"));
-             vacancySpinner.setValue(rs.getString("vacancy"));
-             qualificationTextField.setText(rs.getString("qualification"));
-             dateTextField.setText(rs.getString("date"));
-             placeTextField.setText(rs.getString("place"));
-             contactTextField.setText(rs.getString("contact"));
-             
+                postTextField.setText(rs.getString("post"));
+                vacancySpinner.setValue(Integer.parseInt(rs.getString("vacancy").trim()));
+                qualificationTextField.setText(rs.getString("qualification"));
+                dateTextField.setText(rs.getString("date"));
+                placeTextField.setText(rs.getString("place"));
+                contactTextField.setText(rs.getString("contact"));
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProfileUpdate.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,7 +66,7 @@ String id;
         vacancySpinner = new javax.swing.JSpinner();
         updateButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
@@ -221,9 +224,10 @@ String id;
     }//GEN-LAST:event_placeTextFieldActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-String sql1="update tbl_announcement set post='"+postTextField.getText()+"',vacancy='"+vacancySpinner.getValue()+"',qualification='"+qualificationTextField+"',date='"+dateTextField+"',place='"+placeTextField+"',contact='"+contactTextField.getText()+"' where id='"+id+"'"; 
-Dbcon db=new Dbcon();
-int n=db.insert(sql1);
+        String sql1 = "update tbl_announcement set post='" + postTextField.getText() + "',vacancy='" + vacancySpinner.getValue() + "',qualification='" + qualificationTextField.getText() + "',date='" + dateTextField.getText() + "',place='" + placeTextField.getText() + "',contact='" + contactTextField.getText() + "' where id='" + id + "'";
+        Dbcon db = new Dbcon();
+        int n = db.insert(sql1);
+        this.setVisible(false);
     }//GEN-LAST:event_updateButtonActionPerformed
 
     /**

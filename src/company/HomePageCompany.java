@@ -6,10 +6,12 @@ import javax.swing.JOptionPane;
 
 public class HomePageCompany extends javax.swing.JFrame {
 int id;
+public static int flag=0;
     public HomePageCompany() {
         initComponents();
         this.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
+       
     }
      public HomePageCompany(int id1) {
         initComponents();
@@ -43,6 +45,11 @@ int id;
         jMenuItem12 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jMenu1.setText("Profile");
 
@@ -219,7 +226,7 @@ int id;
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         this.getContentPane().removeAll();
-        AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1();
+        AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id);
         this.add(announcementUpdate1);
         announcementUpdate1.setVisible(true);
         this.revalidate();
@@ -228,7 +235,7 @@ int id;
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         this.getContentPane().removeAll();
-        RequestView requestView = new RequestView();
+        RequestView requestView = new RequestView(id);
         this.add(requestView);
         requestView.setVisible(true);
         this.revalidate();
@@ -288,6 +295,21 @@ int id;
             this.dispose();
         }         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+
+        System.out.println("hello"+flag);
+        
+         if(flag==1){
+             this.getContentPane().removeAll();
+        AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id);
+        this.add(announcementUpdate1);
+        announcementUpdate1.setVisible(true);
+        this.revalidate();
+        this.repaint();   
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
