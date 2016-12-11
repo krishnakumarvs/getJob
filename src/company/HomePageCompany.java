@@ -40,7 +40,6 @@ public static int flag=0;
         jMenu6 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
 
@@ -148,14 +147,6 @@ public static int flag=0;
             }
         });
         jMenu6.add(jMenuItem2);
-
-        jMenuItem3.setText("Change Email Id");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem3);
 
         jMenuBar1.add(jMenu6);
 
@@ -278,15 +269,6 @@ public static int flag=0;
         this.repaint();         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        this.getContentPane().removeAll();
-        ChangeEmailCompany changeEmailCompany = new ChangeEmailCompany();
-        this.add(changeEmailCompany);
-        changeEmailCompany.setVisible(true);
-        this.revalidate();
-        this.repaint();         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         JOptionPane oppane = new JOptionPane();
         int option = oppane.showConfirmDialog(oppane, "Are You Sure To Logout?");
@@ -358,7 +340,6 @@ public static int flag=0;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

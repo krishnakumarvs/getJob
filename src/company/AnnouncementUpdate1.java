@@ -32,28 +32,42 @@ public class AnnouncementUpdate1 extends javax.swing.JPanel {
 
     public AnnouncementUpdate1(int id1) {
         id = id1;
-            initComponents();
+        initComponents();
+        loadAnnouncementTable();
+
+    }
+
+    private void loadAnnouncementTable() {
+        try {
             updateButton.setEnabled(false);
             deleteButton.setEnabled(false);
-            loadTable();
-           
-    }
-private  void loadTable(){
-    try{
-    updateButton.setEnabled(false);
-            deleteButton.setEnabled(false);
-            
+
             Dbcon db = new Dbcon();
             ResultSet rs = db.select("select * from tbl_announcement where companyId='" + id + "' ");
+            
             model = (DefaultTableModel) announcementTable.getModel();
+            
+            
+            String arr [] = new String[3];
+            
             while (rs.next()) {
-                model.addRow(new String[]{rs.getString("id"), rs.getString("date"), rs.getString("post")});
+                String id = rs.getString("id");
+                String date = rs.getString("date");
+                String post = rs.getString("post");
+            
+                arr[0] = id;
+                arr[1] = date;
+                arr[2] = post;
+                
+                model.addRow(arr);
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(AnnouncementUpdate1.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-}
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,13 +101,24 @@ private  void loadTable(){
             new String [] {
                 "ID", "Date", "Post"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         announcementTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 announcementTableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(announcementTable);
+        announcementTable.getColumnModel().getColumn(0).setMinWidth(50);
+        announcementTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+        announcementTable.getColumnModel().getColumn(0).setMaxWidth(50);
 
         updateButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         updateButton.setText("Update");
@@ -161,35 +186,34 @@ private  void loadTable(){
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         String sql1 = "delete from tbl_announcement where id='" + idTable + "'";
-int n;
-Dbcon db=new Dbcon();
-n=db.insert(sql1);
- 
+        int n;
+        Dbcon db = new Dbcon();
+        n = db.insert(sql1);
+
         AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id);
         this.getParent().add(announcementUpdate1);
         this.setVisible(false);
         announcementUpdate1.setVisible(true);
         this.revalidate();
-        this.repaint(); 
-        
-       
+        this.repaint();
+
+
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        HomePageCompany.flag=1;
+        HomePageCompany.flag = 1;
         AnnouncementUpdate2 announcementUpdate2 = new AnnouncementUpdate2(idTable);
-       // this.add(announcementUpdate2);
+        // this.add(announcementUpdate2);
         announcementUpdate2.setVisible(true);
-       // this.revalidate();
-      //  this.repaint();
-        
+        // this.revalidate();
+        //  this.repaint();
+
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-System.out.println("Hello");
+        System.out.println("Hello");
         // TODO add your handling code here:
     }//GEN-LAST:event_formFocusGained
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable announcementTable;
     private javax.swing.JButton deleteButton;
