@@ -51,11 +51,11 @@ public class AnnouncementUpdate1 extends javax.swing.JPanel {
             String arr [] = new String[3];
             
             while (rs.next()) {
-                String id = rs.getString("id");
+                String id1 = rs.getString("id");
                 String date = rs.getString("date");
                 String post = rs.getString("post");
             
-                arr[0] = id;
+                arr[0] = id1;
                 arr[1] = date;
                 arr[2] = post;
                 

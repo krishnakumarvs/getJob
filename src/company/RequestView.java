@@ -4,6 +4,8 @@
  */
 package company;
 
+import db.Dbcon;
+
 /**
  *
  * @author jj
@@ -22,7 +24,8 @@ int id;
         loadData();
     }
 void loadData(){
-    
+   Dbcon db=new Dbcon();
+   
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,8 +56,22 @@ void loadData(){
             new String [] {
                 "Name", "Qualification", "Location", "Post", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(requestTable);
+        requestTable.getColumnModel().getColumn(3).setMinWidth(100);
+        requestTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+        requestTable.getColumnModel().getColumn(3).setMaxWidth(100);
+        requestTable.getColumnModel().getColumn(4).setMinWidth(100);
+        requestTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+        requestTable.getColumnModel().getColumn(4).setMaxWidth(100);
 
         rejectButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         rejectButton.setText("Reject");
