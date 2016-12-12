@@ -230,7 +230,7 @@ public static int flag=0;
         this.add(feedbackViewCompany);
         feedbackViewCompany.setVisible(true);
         this.revalidate();
-        this.repaint();         // TODO add your handling code here:
+        this.repaint();         
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -239,7 +239,7 @@ public static int flag=0;
         this.add(changePasswordCompany);
         changePasswordCompany.setVisible(true);
         this.revalidate();
-        this.repaint();         // TODO add your handling code here:
+        this.repaint();        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -248,7 +248,7 @@ public static int flag=0;
         this.add(changeUserNameCompany);
         changeUserNameCompany.setVisible(true);
         this.revalidate();
-        this.repaint();         // TODO add your handling code here:
+        this.repaint();         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
