@@ -4,17 +4,60 @@
  */
 package company;
 
+import db.Dbcon;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jj
  */
 public class RequestView extends javax.swing.JPanel {
 
+    DefaultTableModel model;
+    int companyId;
+    String requestId;
+
     /**
      * Creates new form RequestView
      */
     public RequestView() {
         initComponents();
+    }
+
+    public RequestView(int id1) {
+        initComponents();
+        companyId = id1;
+        loadData();
+    }
+
+    void loadData() {
+        try {
+            rejectButton.setEnabled(false);
+            deleteButton.setEnabled(false);
+            approveButton.setEnabled(false);
+            profileButton.setEnabled(false);
+            Dbcon db = new Dbcon();
+            model = (DefaultTableModel) requestTable.getModel();
+            String sql = "select * from tbl_request where companyId='" + companyId + "'";
+            ResultSet rs = db.select(sql);
+            String arr[] = new String[6];
+            while (rs.next()) {
+                arr[0] = rs.getString("id");
+                arr[1] = rs.getString("name");
+                arr[2] = rs.getString("qualification");
+                arr[3] = rs.getString("location");
+                arr[4] = rs.getString("post");
+                arr[5] = rs.getString("status");
+                model.addRow(arr);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RequestView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -44,19 +87,56 @@ public class RequestView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Qualification", "Location", "Post", "Status"
+                "id", "Name", "Qualification", "Location", "Post", "status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        requestTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                requestTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(requestTable);
+        requestTable.getColumnModel().getColumn(0).setMinWidth(50);
+        requestTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+        requestTable.getColumnModel().getColumn(0).setMaxWidth(50);
+        requestTable.getColumnModel().getColumn(3).setMinWidth(100);
+        requestTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+        requestTable.getColumnModel().getColumn(3).setMaxWidth(100);
+        requestTable.getColumnModel().getColumn(4).setMinWidth(100);
+        requestTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+        requestTable.getColumnModel().getColumn(4).setMaxWidth(100);
 
         rejectButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         rejectButton.setText("Reject");
+        rejectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rejectButtonActionPerformed(evt);
+            }
+        });
 
         profileButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         profileButton.setText("Profile");
+        profileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileButtonActionPerformed(evt);
+            }
+        });
 
         deleteButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         approveButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         approveButton.setText("Approve");
@@ -108,9 +188,62 @@ public class RequestView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void approveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveButtonActionPerformed
-        // TODO add your handling code here:
+        String s = "Approved";
+        String sql = "update tbl_request set status='" + s + "' where id='" + requestId + "'";
+        Dbcon db = new Dbcon();
+        int n = db.insert(sql);
+        RequestView requestView = new RequestView(companyId);
+        this.getParent().add(requestView);
+        this.setVisible(false);
+        requestView.setVisible(true);
+        this.revalidate();
+        this.repaint();
+// TODO add your handling code here:
     }//GEN-LAST:event_approveButtonActionPerformed
 
+    private void requestTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestTableMouseClicked
+        model = (DefaultTableModel) requestTable.getModel();
+        if (model.getValueAt(requestTable.getSelectedRow(), 0).toString().equals("")) {
+            JOptionPane.showMessageDialog(this, "No data to select");
+        } else {
+            requestId = model.getValueAt(requestTable.getSelectedRow(), 0).toString();
+            rejectButton.setEnabled(true);
+            deleteButton.setEnabled(true);
+            profileButton.setEnabled(true);
+            approveButton.setEnabled(true);
+        }
+    }//GEN-LAST:event_requestTableMouseClicked
+
+    private void rejectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectButtonActionPerformed
+        String r = "rejected";
+        String sql = "update tbl_request set status='" + r + "' where id='" + requestId + "'";
+        Dbcon db = new Dbcon();
+        int n = db.insert(sql);
+        RequestView requestView = new RequestView(companyId);
+        this.getParent().add(requestView);
+        this.setVisible(false);
+        requestView.setVisible(true);
+        this.revalidate();
+        this.repaint();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rejectButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        String sql = "delete from tbl_request where id= '" + requestId + "' ";
+        Dbcon db = new Dbcon();
+        int n = db.insert(sql);
+        RequestView requestView = new RequestView(companyId);
+        this.getParent().add(requestView);
+        this.setVisible(false);
+        requestView.setVisible(true);
+        this.revalidate();
+        this.repaint();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profileButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton approveButton;
     private javax.swing.JButton deleteButton;

@@ -6,10 +6,12 @@ import javax.swing.JOptionPane;
 
 public class HomePageCompany extends javax.swing.JFrame {
 int id;
+public static int flag=0;
     public HomePageCompany() {
         initComponents();
         this.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
+       
     }
      public HomePageCompany(int id1) {
         initComponents();
@@ -26,7 +28,6 @@ int id;
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -38,11 +39,15 @@ int id;
         jMenu6 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jMenu1.setText("Profile");
 
@@ -61,14 +66,6 @@ int id;
             }
         });
         jMenu1.add(jMenuItem5);
-
-        jMenuItem6.setText("View User Profile");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem6);
 
         jMenuBar1.add(jMenu1);
 
@@ -142,14 +139,6 @@ int id;
         });
         jMenu6.add(jMenuItem2);
 
-        jMenuItem3.setText("Change Email Id");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem3);
-
         jMenuBar1.add(jMenu6);
 
         jMenu5.setText("Logout");
@@ -199,15 +188,6 @@ int id;
         this.repaint();            // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        this.getContentPane().removeAll();
-        ProfileViewUser profileViewUser = new ProfileViewUser();
-        this.add(profileViewUser);
-        profileViewUser.setVisible(true);
-        this.revalidate();
-        this.repaint();            // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         this.getContentPane().removeAll();
         AnnouncementAdd announcementAdd = new AnnouncementAdd(id,this);
@@ -219,7 +199,7 @@ int id;
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         this.getContentPane().removeAll();
-        AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1();
+        AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id);
         this.add(announcementUpdate1);
         announcementUpdate1.setVisible(true);
         this.revalidate();
@@ -228,7 +208,7 @@ int id;
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         this.getContentPane().removeAll();
-        RequestView requestView = new RequestView();
+        RequestView requestView = new RequestView(id);
         this.add(requestView);
         requestView.setVisible(true);
         this.revalidate();
@@ -271,15 +251,6 @@ int id;
         this.repaint();         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        this.getContentPane().removeAll();
-        ChangeEmailCompany changeEmailCompany = new ChangeEmailCompany();
-        this.add(changeEmailCompany);
-        changeEmailCompany.setVisible(true);
-        this.revalidate();
-        this.repaint();         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         JOptionPane oppane = new JOptionPane();
         int option = oppane.showConfirmDialog(oppane, "Are You Sure To Logout?");
@@ -288,6 +259,21 @@ int id;
             this.dispose();
         }         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+
+        System.out.println("hello"+flag);
+        
+         if(flag==1){
+             this.getContentPane().removeAll();
+        AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id);
+        this.add(announcementUpdate1);
+        announcementUpdate1.setVisible(true);
+        this.revalidate();
+        this.repaint();   
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -336,10 +322,8 @@ int id;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
