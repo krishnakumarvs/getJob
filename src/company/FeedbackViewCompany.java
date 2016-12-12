@@ -9,14 +9,21 @@ package company;
  * @author jj
  */
 public class FeedbackViewCompany extends javax.swing.JPanel {
-
+int id;
     /**
      * Creates new form FeedbackView
      */
     public FeedbackViewCompany() {
         initComponents();
     }
-
+    public FeedbackViewCompany(int id1) {
+        initComponents();
+        id=id1;
+        loadFeedbackTable();
+    }
+private void loadFeedbackTable(){
+    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,11 +52,20 @@ public class FeedbackViewCompany extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Date", "Name", "Subject"
+                "ID", "Date", "Name", "Subject"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(feedbackListTable);
 
+        discriptionTextArea.setEditable(false);
         discriptionTextArea.setColumns(20);
         discriptionTextArea.setRows(5);
         jScrollPane2.setViewportView(discriptionTextArea);

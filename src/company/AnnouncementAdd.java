@@ -102,6 +102,11 @@ HomePageCompany parentFrame;
 
         cancelButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -204,6 +209,12 @@ HomePageCompany parentFrame;
         parentFrame.revalidate();
         // TODO add your handling code here:
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+parentFrame.getContentPane().removeAll();
+parentFrame.repaint();
+parentFrame.revalidate();        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;

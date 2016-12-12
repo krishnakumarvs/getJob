@@ -226,7 +226,7 @@ public static int flag=0;
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         this.getContentPane().removeAll();
-        FeedbackViewCompany feedbackViewCompany = new FeedbackViewCompany();
+        FeedbackViewCompany feedbackViewCompany = new FeedbackViewCompany(id);
         this.add(feedbackViewCompany);
         feedbackViewCompany.setVisible(true);
         this.revalidate();
@@ -235,7 +235,7 @@ public static int flag=0;
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         this.getContentPane().removeAll();
-        ChangePasswordCompany changePasswordCompany = new ChangePasswordCompany();
+        ChangePasswordCompany changePasswordCompany = new ChangePasswordCompany(id,this);
         this.add(changePasswordCompany);
         changePasswordCompany.setVisible(true);
         this.revalidate();
@@ -244,7 +244,7 @@ public static int flag=0;
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         this.getContentPane().removeAll();
-        ChangeUserNameCompany changeUserNameCompany = new ChangeUserNameCompany();
+        ChangeUserNameCompany changeUserNameCompany = new ChangeUserNameCompany(id,this);
         this.add(changeUserNameCompany);
         changeUserNameCompany.setVisible(true);
         this.revalidate();

@@ -4,19 +4,27 @@
  */
 package company;
 
+import db.Dbcon;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jj
  */
 public class ChangeUserNameCompany extends javax.swing.JPanel {
-
+HomePageCompany parentframe;
+int id;
     /**
      * Creates new form UserNameSetting
      */
     public ChangeUserNameCompany() {
         initComponents();
     }
-
+public ChangeUserNameCompany(int id1,HomePageCompany parentframe) {
+        initComponents();
+        id=id1;
+        this.parentframe=parentframe;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,6 +73,11 @@ public class ChangeUserNameCompany extends javax.swing.JPanel {
 
         okButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         okButton.setText("OK");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -123,8 +136,31 @@ public class ChangeUserNameCompany extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
+parentframe.getContentPane().removeAll();
+        parentframe.repaint();
+        parentframe.revalidate();         // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+String usename=currentUserNameTextField.getText();
+String newuser=newUserNameTextField.getText();
+String reuser=repeatNewUserNameTextField.getText();
+if(currentUserNameTextField.getText().equals("")|| newUserNameTextField.getText().equals("")||repeatNewUserNameTextField.getText().equals("") ){
+    JOptionPane.showMessageDialog(this, "please enter all fields");
+}
+else{
+   
+
+String sql="update  tbl_company set  username='"+newuser+"' where id='"+id+"' and username='"+usename+"' ";
+int ins;
+Dbcon db=new Dbcon();
+            ins=db.insert(sql);
+           JOptionPane.showMessageDialog(this," successfully inserted" );
+} 
+ parentframe.getContentPane().removeAll();
+        parentframe.repaint();
+        parentframe.revalidate();        // TODO add your handling code here:
+    }//GEN-LAST:event_okButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;

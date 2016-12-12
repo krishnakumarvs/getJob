@@ -195,7 +195,7 @@ if(nameTextField.getText().equals("")|| emailIdTextField.getText().equals("")||p
 else{
    
 
-String sql="insert into tbl_company (name,mail_id,phone_no,address) values('"+name1+"','"+email+"','"+phone+"','"+address1+"')";
+String sql="insert into tbl_company (name,mail_id,phone_no,address,username) values('"+name1+"','"+email+"','"+phone+"','"+address1+"','"+name1+"')";
 int ins;
 Dbcon db=new Dbcon();
             ins=db.insert(sql);
