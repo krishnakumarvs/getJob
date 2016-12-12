@@ -12,14 +12,17 @@ import javax.swing.JOptionPane;
  * @author jj
  */
 public class ChangePasswordAdmin extends javax.swing.JPanel {
-
+HomePageAdmin parentframe;
     /**
      * Creates new form PasswordSetting
      */
     public ChangePasswordAdmin() {
         initComponents();
     }
-
+ public ChangePasswordAdmin(HomePageAdmin parentframe) {
+        initComponents();
+        this.parentframe=parentframe;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,7 +134,9 @@ public class ChangePasswordAdmin extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
+ parentframe.getContentPane().removeAll();
+        parentframe.repaint();
+        parentframe.revalidate();        // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
 
 private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
@@ -150,7 +155,10 @@ Dbcon db=new Dbcon();
             ins=db.insert(sql);
            JOptionPane.showMessageDialog(this," successfully inserted" );
             
-}                                            
+}    
+ parentframe.getContentPane().removeAll();
+        parentframe.repaint();
+        parentframe.revalidate();
 }//GEN-LAST:event_okButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

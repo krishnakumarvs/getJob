@@ -213,7 +213,7 @@ public class HomePageAdmin extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         this.getContentPane().removeAll();
-        ChangePasswordAdmin changePasswordAdmin = new ChangePasswordAdmin();
+        ChangePasswordAdmin changePasswordAdmin = new ChangePasswordAdmin(this);
         this.add(changePasswordAdmin);
         changePasswordAdmin.setVisible(true);
         this.revalidate();
@@ -222,7 +222,7 @@ public class HomePageAdmin extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         this.getContentPane().removeAll();
-        ChangeUserNameAdmin changeUserNameAdmin = new ChangeUserNameAdmin();
+        ChangeUserNameAdmin changeUserNameAdmin = new ChangeUserNameAdmin(this);
         this.add(changeUserNameAdmin);
         changeUserNameAdmin.setVisible(true);
         this.revalidate();

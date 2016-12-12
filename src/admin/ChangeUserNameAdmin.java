@@ -12,12 +12,13 @@ import javax.swing.JOptionPane;
  * @author jj
  */
 public class ChangeUserNameAdmin extends javax.swing.JPanel {
-
+HomePageAdmin parentframe;
     /**
      * Creates new form UserNameSetting
      */
-    public ChangeUserNameAdmin() {
+    public ChangeUserNameAdmin(HomePageAdmin parentframe) {
         initComponents();
+        this.parentframe=parentframe;
     }
 
     /**
@@ -131,7 +132,9 @@ public class ChangeUserNameAdmin extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
+ parentframe.getContentPane().removeAll();
+        parentframe.repaint();
+        parentframe.revalidate();        // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
 
 private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
@@ -149,7 +152,11 @@ int ins;
 Dbcon db=new Dbcon();
             ins=db.insert(sql);
            JOptionPane.showMessageDialog(this," successfully inserted" );
-}   // TODO add your handling code here:
+} 
+ parentframe.getContentPane().removeAll();
+        parentframe.repaint();
+        parentframe.revalidate();
+// TODO add your handling code here:
 }//GEN-LAST:event_okButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

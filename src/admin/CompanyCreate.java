@@ -201,6 +201,9 @@ Dbcon db=new Dbcon();
             ins=db.insert(sql);
            JOptionPane.showMessageDialog(this," successfully inserted" );
             }
+ parentframe.getContentPane().removeAll();
+        parentframe.repaint();
+        parentframe.revalidate();
 }//GEN-LAST:event_createButtonActionPerformed
 
 private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

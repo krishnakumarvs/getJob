@@ -44,26 +44,27 @@ public class LoginAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 3, 24));
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 204));
         jLabel1.setText("LOGIN  PAGE");
 
-        jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
+        jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel2.setText("USER  NAME              :");
 
-        jLabel4.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
+        jLabel4.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         jLabel4.setText("PASSWORD                :");
 
         rememberPasswordCheckBox.setText("Rememer  Passwod");
 
-        userNameTextField.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
+        userNameTextField.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        userNameTextField.setText("Admin");
         userNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameTextFieldActionPerformed(evt);
             }
         });
 
-        loginButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
+        loginButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +72,7 @@ public class LoginAdmin extends javax.swing.JFrame {
             }
         });
 
-        clearButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18));
+        clearButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         clearButton.setText("Clear");
         clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
