@@ -46,14 +46,14 @@ CREATE TABLE `tbl_company` (
   `mail_id` varchar(100) DEFAULT NULL,
   `phone_no` varchar(20) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
-  `discription` varchar(200) NOT NULL,
+  `discription` varchar(200) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_company` */
 
-insert  into `tbl_company`(`id`,`name`,`mail_id`,`phone_no`,`address`,`discription`,`password`) values (1,'Dream','dreamkochi@gamil.com','9747865703','Kochi','Most famous company in this country.it is the highest profit earning company.','dream12345');
+insert  into `tbl_company`(`id`,`name`,`mail_id`,`phone_no`,`address`,`discription`,`password`) values (1,'Dream','dreamkochi@gamil.com','9747865703','Kochi','Most famous company in this country.it is the highest profit earning company.','dream12345'),(2,'angels','angel@gmail.com','8784858689','angel nagar cochi ernakulam',NULL,NULL);
 
 /*Table structure for table `tbl_feedbackadmin` */
 
@@ -78,9 +78,11 @@ CREATE TABLE `tbl_loginadmin` (
   `username` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`no`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_loginadmin` */
+
+insert  into `tbl_loginadmin`(`no`,`username`,`password`) values (1,'Admin','admin123');
 
 /*Table structure for table `tbl_request` */
 
@@ -94,12 +96,18 @@ CREATE TABLE `tbl_request` (
   `qualification` varchar(100) DEFAULT NULL,
   `post` varchar(100) DEFAULT NULL,
   `location` varchar(100) DEFAULT NULL,
+  `experience` varchar(100) DEFAULT NULL,
+  `dob` varchar(100) DEFAULT NULL,
+  `email_id` varchar(100) DEFAULT NULL,
+  `age` int(50) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_request` */
 
-insert  into `tbl_request`(`id`,`companyId`,`Status`,`name`,`qualification`,`post`,`location`) values (1,1,'Approved','Ram','degree','manager','ernakulam');
+insert  into `tbl_request`(`id`,`companyId`,`Status`,`name`,`qualification`,`post`,`location`,`experience`,`dob`,`email_id`,`age`,`address`,`phone`) values (1,1,'Approved','Ram','degree','manager','ernakulam','2 year','23-10-1996','ram@gmail.com',20,'kachapilly(h) ernakulam','+9156848756'),(3,NULL,'Requested',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `tbl_userview` */
 
@@ -112,6 +120,11 @@ CREATE TABLE `tbl_userview` (
   `phone` varchar(15) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
+  `experience` varchar(200) DEFAULT NULL,
+  `post` varchar(100) DEFAULT NULL,
+  `dob` varchar(100) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `qualification` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

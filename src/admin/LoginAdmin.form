@@ -148,6 +148,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="passwordField">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="admin123"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="loginButton">
           <Properties>

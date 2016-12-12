@@ -64,6 +64,8 @@ public class LoginAdmin extends javax.swing.JFrame {
             }
         });
 
+        passwordField.setText("admin123");
+
         loginButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {

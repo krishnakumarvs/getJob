@@ -33,6 +33,7 @@ public class RequestView extends javax.swing.JPanel {
         initComponents();
         companyId = id1;
         loadData();
+        requestTable.setAutoCreateColumnsFromModel(true);
     }
 
     void loadData() {
