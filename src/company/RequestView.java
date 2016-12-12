@@ -7,10 +7,17 @@ package company;
 import db.Dbcon;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.event.RowSorterEvent;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -33,7 +40,21 @@ public class RequestView extends javax.swing.JPanel {
         initComponents();
         companyId = id1;
         loadData();
-        requestTable.setAutoCreateColumnsFromModel(true);
+        sortStatus();
+
+    }
+
+    private void sortStatus() {
+        
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(requestTable.getModel());
+        requestTable.setRowSorter(sorter);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+        
+        int columnIndexToSort = 5;
+        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+        
+        sorter.setSortKeys(sortKeys);
+        sorter.sort();
     }
 
     void loadData() {
@@ -151,24 +172,25 @@ public class RequestView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(230, 230, 230))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(rejectButton)
-                        .addGap(63, 63, 63)
-                        .addComponent(deleteButton)
-                        .addGap(75, 75, 75)
-                        .addComponent(profileButton)
-                        .addGap(78, 78, 78)
-                        .addComponent(approveButton)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(192, 192, 192))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(32, 32, 32)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(80, 80, 80)
+                            .addComponent(rejectButton)
+                            .addGap(63, 63, 63)
+                            .addComponent(deleteButton)
+                            .addGap(75, 75, 75)
+                            .addComponent(profileButton)
+                            .addGap(78, 78, 78)
+                            .addComponent(approveButton))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -243,7 +265,7 @@ public class RequestView extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
-        HomePageCompany.flag=2;
+        HomePageCompany.flag = 2;
         ProfileViewUser profileViewUser = new ProfileViewUser(requestId);
         profileViewUser.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_profileButtonActionPerformed
