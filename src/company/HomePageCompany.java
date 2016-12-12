@@ -270,8 +270,17 @@ public static int flag=0;
         this.add(announcementUpdate1);
         announcementUpdate1.setVisible(true);
         this.revalidate();
-        this.repaint();   
+        this.repaint();  
+         }
+         else if(flag==1){
+            this.getContentPane().removeAll();
+        RequestView requestView = new RequestView(id);
+        this.add(requestView);
+        requestView.setVisible(true);
+        this.revalidate();
+        this.repaint();  
         }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowActivated
 

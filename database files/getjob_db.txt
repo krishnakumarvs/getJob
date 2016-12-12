@@ -1,0 +1,123 @@
+/*
+SQLyog Community v8.82 
+MySQL - 5.6.25-log : Database - getjob_db
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`getjob_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `getjob_db`;
+
+/*Table structure for table `tbl_announcement` */
+
+DROP TABLE IF EXISTS `tbl_announcement`;
+
+CREATE TABLE `tbl_announcement` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post` varchar(100) DEFAULT NULL,
+  `vacancy` varchar(100) DEFAULT NULL,
+  `qualification` varchar(100) DEFAULT NULL,
+  `date` varchar(100) DEFAULT NULL,
+  `place` varchar(100) DEFAULT NULL,
+  `contact` int(15) NOT NULL,
+  `companyId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_announcement` */
+
+insert  into `tbl_announcement`(`id`,`post`,`vacancy`,`qualification`,`date`,`place`,`contact`,`companyId`) values (4,'manager','1','degree','12-12-2017','ernakulam',24664546,1);
+
+/*Table structure for table `tbl_company` */
+
+DROP TABLE IF EXISTS `tbl_company`;
+
+CREATE TABLE `tbl_company` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `mail_id` varchar(100) DEFAULT NULL,
+  `phone_no` varchar(20) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `discription` varchar(200) NOT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_company` */
+
+insert  into `tbl_company`(`id`,`name`,`mail_id`,`phone_no`,`address`,`discription`,`password`) values (1,'Dream','dreamkochi@gamil.com','9747865703','Kochi','Most famous company in this country.it is the highest profit earning company.','dream12345');
+
+/*Table structure for table `tbl_feedbackadmin` */
+
+DROP TABLE IF EXISTS `tbl_feedbackadmin`;
+
+CREATE TABLE `tbl_feedbackadmin` (
+  `date` date DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `subject` varchar(100) DEFAULT NULL,
+  `type` varchar(20) DEFAULT NULL,
+  `discription` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_feedbackadmin` */
+
+/*Table structure for table `tbl_loginadmin` */
+
+DROP TABLE IF EXISTS `tbl_loginadmin`;
+
+CREATE TABLE `tbl_loginadmin` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_loginadmin` */
+
+/*Table structure for table `tbl_request` */
+
+DROP TABLE IF EXISTS `tbl_request`;
+
+CREATE TABLE `tbl_request` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `companyId` int(11) DEFAULT NULL,
+  `Status` varchar(20) DEFAULT 'Requested',
+  `name` varchar(100) DEFAULT NULL,
+  `qualification` varchar(100) DEFAULT NULL,
+  `post` varchar(100) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_request` */
+
+insert  into `tbl_request`(`id`,`companyId`,`Status`,`name`,`qualification`,`post`,`location`) values (1,1,'Approved','Ram','degree','manager','ernakulam');
+
+/*Table structure for table `tbl_userview` */
+
+DROP TABLE IF EXISTS `tbl_userview`;
+
+CREATE TABLE `tbl_userview` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `email_id` varchar(100) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_userview` */
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

@@ -242,7 +242,9 @@ public class RequestView extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
-        // TODO add your handling code here:
+        HomePageCompany.flag=2;
+        ProfileViewUser profileViewUser = new ProfileViewUser(requestId);
+        profileViewUser.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_profileButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton approveButton;
