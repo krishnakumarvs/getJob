@@ -217,7 +217,7 @@ public static int flag=0;
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         this.getContentPane().removeAll();
-        FeedbackCreate feedbackCreate = new FeedbackCreate();
+        FeedbackCreate feedbackCreate = new FeedbackCreate(id,this);
         this.add(feedbackCreate);
         feedbackCreate.setVisible(true);
         this.revalidate();

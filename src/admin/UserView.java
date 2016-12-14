@@ -4,6 +4,12 @@
  */
 package admin;
 
+import db.Dbcon;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author jj
@@ -15,6 +21,25 @@ public class UserView extends javax.swing.JPanel {
      */
     public UserView() {
         initComponents();
+        loadUserTable();
+    }
+
+    private void loadUserTable() {
+        try {
+            detailsButton1.setEnabled(false);
+            String sql ="select * from tbl_userview";
+            Dbcon db = new Dbcon();
+            ResultSet rs= db. select(sql);
+            String arr[]=new String[5];
+            while(rs.next()){
+                arr[0]=rs.getString("name");
+                arr[1]=rs.getString("email_id");
+                arr[2]=rs.getString("phone");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
     }
 
     /**
@@ -28,15 +53,15 @@ public class UserView extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        userTable = new javax.swing.JTable();
+        detailsButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText(" USER    DETAILS");
 
-        jTable1.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        userTable.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -44,13 +69,13 @@ public class UserView extends javax.swing.JPanel {
                 "Name", "Email", "Phone No", "Address", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(userTable);
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
-        jButton1.setText("Details");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        detailsButton1.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        detailsButton1.setText("Details");
+        detailsButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                detailsButton1ActionPerformed(evt);
             }
         });
 
@@ -60,7 +85,7 @@ public class UserView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(detailsButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -79,19 +104,18 @@ public class UserView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(detailsButton1)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void detailsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailsButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    }//GEN-LAST:event_detailsButton1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton detailsButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables
 }
