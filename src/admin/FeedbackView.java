@@ -4,11 +4,20 @@
  */
 package admin;
 
+import db.Dbcon;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jj
  */
 public class FeedbackView extends javax.swing.JPanel {
+
+    DefaultTableModel model = null;
 
     /**
      * Creates new form FeedbackView
@@ -60,11 +69,20 @@ public class FeedbackView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Date", "Name", "Subject"
+                "Date", "Subject"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(feedbackListTable);
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
@@ -130,9 +148,22 @@ public class FeedbackView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            model = (DefaultTableModel) feedbackListTable.getModel();
+            String sql = "select * from tbl_feedback where audence='admin' and notification='admin'";
+            Dbcon db = new Dbcon();
+            ResultSet rs = db.select(sql);
+            String arr[]=new String[2];
+            while(rs.next()){
+                arr[0]=rs.getString("date");
+                arr[1]=rs.getString("title");
+                model.addRow(arr);
+            }
+                    // TODO add your handling code here:
+        } catch (SQLException ex) {
+            Logger.getLogger(FeedbackView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jRadioButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JTable feedbackListTable;
