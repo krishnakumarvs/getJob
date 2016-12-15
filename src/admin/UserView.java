@@ -9,13 +9,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jj
  */
 public class UserView extends javax.swing.JPanel {
-
+DefaultTableModel model=null;
+String idTable;
     /**
      * Creates new form ViewUser
      */
@@ -30,11 +33,16 @@ public class UserView extends javax.swing.JPanel {
             String sql ="select * from tbl_userview";
             Dbcon db = new Dbcon();
             ResultSet rs= db. select(sql);
+                        model = (DefaultTableModel) userTable.getModel();
+
             String arr[]=new String[5];
             while(rs.next()){
-                arr[0]=rs.getString("name");
-                arr[1]=rs.getString("email_id");
-                arr[2]=rs.getString("phone");
+                arr[0]=rs.getString("id");
+                arr[1]=rs.getString("name");
+                arr[2]=rs.getString("email_id");
+                arr[3]=rs.getString("phone");
+                arr[4]=rs.getString("address");
+                model.addRow(arr);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,10 +74,25 @@ public class UserView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Email", "Phone No", "Address", "Status"
+                "ID", "Name", "Email", "Phone No", "Address"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        userTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(userTable);
+        userTable.getColumnModel().getColumn(3).setResizable(false);
+        userTable.getColumnModel().getColumn(4).setResizable(false);
 
         detailsButton1.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         detailsButton1.setText("Details");
@@ -110,8 +133,22 @@ public class UserView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void detailsButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailsButton1ActionPerformed
-        // TODO add your handling code here:
+ HomePageAdmin.flag = 1;
+        ProfileViewUser profileViewUser = new ProfileViewUser(idTable);
+        // this.add(announcementUpdate2);
+        profileViewUser.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_detailsButton1ActionPerformed
+
+    private void userTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTableMouseClicked
+ model = (DefaultTableModel) userTable.getModel();
+        if (model.getValueAt(userTable.getSelectedRow(), 0).toString().equals("")) {
+            JOptionPane.showMessageDialog(this, "No data to select");
+        } else {
+            idTable = model.getValueAt(userTable.getSelectedRow(), 0).toString();
+            detailsButton1.setEnabled(true);
+        }           // TODO add your handling code here:
+    }//GEN-LAST:event_userTableMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton detailsButton1;
     private javax.swing.JLabel jLabel1;

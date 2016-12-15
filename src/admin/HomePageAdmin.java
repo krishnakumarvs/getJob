@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author jj
  */
 public class HomePageAdmin extends javax.swing.JFrame {
-
+public static int flag=0;
     /**
      * Creates new form HomePage
      */
@@ -45,9 +45,6 @@ public class HomePageAdmin extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,26 +140,6 @@ public class HomePageAdmin extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("admin");
-
-        jMenuItem7.setText("create new admin");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem7);
-
-        jMenuItem10.setText("profile");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem10);
-
-        jMenuBar1.add(jMenu6);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -254,24 +231,6 @@ public class HomePageAdmin extends javax.swing.JFrame {
         }       // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
-private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-    this.getContentPane().removeAll();
-    Create_new_admin createadmin = new Create_new_admin(this);
-    this.add(createadmin);
-    createadmin.setVisible(true);
-    this.revalidate();
-    this.repaint();
-}//GEN-LAST:event_jMenuItem7ActionPerformed
-
-private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-    this.getContentPane().removeAll();
-    Update_Profile update = new Update_Profile();
-    this.add(update);
-    update.setVisible(true);
-    this.revalidate();
-    this.repaint();// TODO add your handling code here:
-}//GEN-LAST:event_jMenuItem10ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -313,15 +272,12 @@ private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
