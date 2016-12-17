@@ -5,6 +5,7 @@
 package admin;
 
 import db.Dbcon;
+import java.security.SecureRandom;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
@@ -22,6 +23,17 @@ HomePageAdmin parentframe;
         initComponents();
         this.parentframe=parentframe;
         
+    }
+ public static String createPassword(int len) {
+        String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        SecureRandom rnd = new SecureRandom();
+
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            sb.append(AB.charAt(rnd.nextInt(AB.length())));
+        }
+        return sb.toString();
+
     }
 
     /**
@@ -185,6 +197,7 @@ HomePageAdmin parentframe;
     }//GEN-LAST:event_phoneNoTextFieldActionPerformed
 
 private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+String pass=createPassword(7);
 String name1=nameTextField.getText();
 String email=emailIdTextField.getText();
 String phone=phoneNoTextField.getText();
@@ -195,7 +208,7 @@ if(nameTextField.getText().equals("")|| emailIdTextField.getText().equals("")||p
 else{
    
 
-String sql="insert into tbl_company (name,mail_id,phone_no,address,username) values('"+name1+"','"+email+"','"+phone+"','"+address1+"','"+name1+"')";
+String sql="insert into tbl_company (name,mail_id,phone_no,address,username,password) values('"+name1+"','"+email+"','"+phone+"','"+address1+"','"+name1+"','"+pass+"')";
 int ins;
 Dbcon db=new Dbcon();
             ins=db.insert(sql);
