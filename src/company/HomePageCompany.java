@@ -205,7 +205,7 @@ public class HomePageCompany extends javax.swing.JFrame {
     
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         this.getContentPane().removeAll();
-        AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id);
+        AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id,this);
         this.add(announcementUpdate1);
         announcementUpdate1.setVisible(true);
         this.revalidate();
@@ -271,8 +271,9 @@ public class HomePageCompany extends javax.swing.JFrame {
         System.out.println("hello" + flag);
         
         if (flag == 1) {
+            //this.setEnabled(true);
             this.getContentPane().removeAll();
-            AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id);
+            AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id,this);
             this.add(announcementUpdate1);
             announcementUpdate1.setVisible(true);
             this.revalidate();
