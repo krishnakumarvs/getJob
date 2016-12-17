@@ -99,9 +99,9 @@ String idTable;
             }
         });
         jScrollPane1.setViewportView(companyTable);
-        companyTable.getColumnModel().getColumn(0).setMinWidth(50);
-        companyTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-        companyTable.getColumnModel().getColumn(0).setMaxWidth(50);
+        companyTable.getColumnModel().getColumn(0).setMinWidth(0);
+        companyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        companyTable.getColumnModel().getColumn(0).setMaxWidth(0);
         companyTable.getColumnModel().getColumn(4).setMinWidth(150);
         companyTable.getColumnModel().getColumn(4).setPreferredWidth(150);
         companyTable.getColumnModel().getColumn(4).setMaxWidth(150);
