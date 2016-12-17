@@ -52,7 +52,7 @@ public class AnnouncementUpdate1 extends javax.swing.JPanel {
             
             while (rs.next()) {
                 String id1 = rs.getString("id");
-                String date = rs.getString("date_in_milli");
+                String date = rs.getString("date");
                 String post = rs.getString("post");
             
                 arr[0] = id1;
@@ -99,7 +99,7 @@ public class AnnouncementUpdate1 extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Date", "Post"
+                "ID", "Last Date", "Post"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -116,9 +116,9 @@ public class AnnouncementUpdate1 extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(announcementTable);
-        announcementTable.getColumnModel().getColumn(0).setMinWidth(50);
-        announcementTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-        announcementTable.getColumnModel().getColumn(0).setMaxWidth(50);
+        announcementTable.getColumnModel().getColumn(0).setMinWidth(0);
+        announcementTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        announcementTable.getColumnModel().getColumn(0).setMaxWidth(0);
 
         updateButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         updateButton.setText("Update");
