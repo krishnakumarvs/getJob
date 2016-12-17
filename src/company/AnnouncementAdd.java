@@ -5,6 +5,7 @@
 package company;
 
 import db.Dbcon;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -203,8 +204,16 @@ HomePageCompany parentFrame;
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         Date date=dateXDatePicker1.getDate();
-        System.out.println(date);
-        String sql="insert into tbl_announcement(post,vacancy,qualification,date_in_milli,place,contact,companyId) values('"+postTextField.getText()+"','"+vacancySpinner.getValue()+"','"+qualificationTextField.getText()+"','"+dateXDatePicker1.getDate()+"','"+placeTextField.getText()+"','"+contactTextField.getText()+"','"+id+"')";
+       // System.out.println(date);
+        //Long datee=Long.parseLong(date);
+         Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        
+        
+        String datee;
+        long datemilli=c.getTimeInMillis();
+       datee = c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DAY_OF_MONTH);
+        String sql="insert into tbl_announcement(post,vacancy,qualification,date_in_milli,place,contact,companyId,date) values('"+postTextField.getText()+"','"+vacancySpinner.getValue()+"','"+qualificationTextField.getText()+"','"+datemilli+"','"+placeTextField.getText()+"','"+contactTextField.getText()+"','"+id+"','"+datee+"')";
         int n;
         Dbcon db=new Dbcon();
         db.insert(sql);
