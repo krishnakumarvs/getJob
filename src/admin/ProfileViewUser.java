@@ -108,7 +108,7 @@ public class ProfileViewUser extends javax.swing.JFrame {
         jLabel7.setText("PHONE  NUMBER         :");
 
         goButton.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        goButton.setText("Go ->>");
+        goButton.setText("Back");
         goButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 goButtonActionPerformed(evt);
