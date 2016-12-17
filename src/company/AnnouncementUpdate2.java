@@ -7,20 +7,22 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 public class AnnouncementUpdate2 extends javax.swing.JFrame {
 
     String id;
-
+HomePageCompany parentframe;
     public AnnouncementUpdate2() {
         initComponents();
 
     }
 
-    public AnnouncementUpdate2(String id1) {
+    public AnnouncementUpdate2(String id1,HomePageCompany parentframe) {
         initComponents();
         id = id1;
         loadProfileCompany();
+        this.parentframe= parentframe;
     }
 
     private void loadProfileCompany() {
@@ -72,6 +74,11 @@ public class AnnouncementUpdate2 extends javax.swing.JFrame {
         dateXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
@@ -242,9 +249,25 @@ public class AnnouncementUpdate2 extends javax.swing.JFrame {
         String sql1 = "update tbl_announcement set date_in_milli='"+datemilli+"',post='" + postTextField.getText() + "',vacancy='" + vacancySpinner.getValue() + "',qualification='" + qualificationTextField.getText() + "',date='" + datee + "',place='" + placeTextField.getText() + "',contact='" + contactTextField.getText() + "' where id='" + id + "'";
         Dbcon db = new Dbcon();
         int n = db.insert(sql1);
+        enableParent();
         this.setVisible(false);
+        
+        
     }//GEN-LAST:event_updateButtonActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+        enableParent();
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
+
+    private void enableParent() {
+        parentframe.setEnabled(true);
+        parentframe.setState(JFrame.NORMAL);
+        parentframe.toFront();
+    }
+    
     /**
      * @param args the command line arguments
      */

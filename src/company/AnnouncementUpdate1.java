@@ -25,15 +25,17 @@ public class AnnouncementUpdate1 extends javax.swing.JPanel {
     /**
      * Creates new form UpdateAnnouncement
      */
+    HomePageCompany parentframe;
     public AnnouncementUpdate1() {
         initComponents();
-
+loadAnnouncementTable();
     }
 
-    public AnnouncementUpdate1(int id1) {
+    public AnnouncementUpdate1(int id1,HomePageCompany parentframe) {
         id = id1;
         initComponents();
         loadAnnouncementTable();
+        this.parentframe=parentframe;
 
     }
 
@@ -190,7 +192,7 @@ public class AnnouncementUpdate1 extends javax.swing.JPanel {
         Dbcon db = new Dbcon();
         n = db.insert(sql1);
 
-        AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id);
+        AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id,parentframe);
         this.getParent().add(announcementUpdate1);
         this.setVisible(false);
         announcementUpdate1.setVisible(true);
@@ -201,12 +203,16 @@ public class AnnouncementUpdate1 extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+
+        parentframe.setEnabled(false);
         HomePageCompany.flag = 1;
-        AnnouncementUpdate2 announcementUpdate2 = new AnnouncementUpdate2(idTable);
-        // this.add(announcementUpdate2);
+        AnnouncementUpdate2 announcementUpdate2 = new AnnouncementUpdate2(idTable,parentframe);
+        
         announcementUpdate2.setVisible(true);
-        // this.revalidate();
-        //  this.repaint();
+        
+//        parentframe.getContentPane().removeAll();
+//        parentframe.repaint();
+//        parentframe.revalidate();
 
     }//GEN-LAST:event_updateButtonActionPerformed
 
