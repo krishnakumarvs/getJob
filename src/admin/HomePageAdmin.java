@@ -4,6 +4,7 @@
  */
 package admin;
 
+import getjob.start_frame;
 import java.awt.FlowLayout;
 import javax.swing.JOptionPane;
 
@@ -226,7 +227,7 @@ public static int flag=0;
         JOptionPane oppane = new JOptionPane();
         int option = oppane.showConfirmDialog(oppane, "Are You Sure To Logout?");
         if (option == JOptionPane.YES_OPTION) {
-            new LoginAdmin().setVisible(true);
+            new start_frame().setVisible(true);
             this.dispose();
         }       // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
