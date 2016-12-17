@@ -91,6 +91,9 @@ String idTable;
             }
         });
         jScrollPane1.setViewportView(userTable);
+        userTable.getColumnModel().getColumn(0).setMinWidth(0);
+        userTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        userTable.getColumnModel().getColumn(0).setMaxWidth(0);
         userTable.getColumnModel().getColumn(3).setResizable(false);
         userTable.getColumnModel().getColumn(4).setResizable(false);
 
