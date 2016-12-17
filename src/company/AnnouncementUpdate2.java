@@ -3,6 +3,7 @@ package company;
 import db.Dbcon;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -228,7 +229,17 @@ public class AnnouncementUpdate2 extends javax.swing.JFrame {
     }//GEN-LAST:event_placeTextFieldActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        String sql1 = "update tbl_announcement set post='" + postTextField.getText() + "',vacancy='" + vacancySpinner.getValue() + "',qualification='" + qualificationTextField.getText() + "',date='" + dateXDatePicker1.getDate() + "',place='" + placeTextField.getText() + "',contact='" + contactTextField.getText() + "' where id='" + id + "'";
+        Date date=dateXDatePicker1.getDate();
+       // System.out.println(date);
+        //Long datee=Long.parseLong(date);
+         Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        
+        
+        String datee;
+        long datemilli=c.getTimeInMillis();
+       datee = c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DAY_OF_MONTH);
+        String sql1 = "update tbl_announcement set date_in_milli='"+datemilli+"',post='" + postTextField.getText() + "',vacancy='" + vacancySpinner.getValue() + "',qualification='" + qualificationTextField.getText() + "',date='" + datee + "',place='" + placeTextField.getText() + "',contact='" + contactTextField.getText() + "' where id='" + id + "'";
         Dbcon db = new Dbcon();
         int n = db.insert(sql1);
         this.setVisible(false);
