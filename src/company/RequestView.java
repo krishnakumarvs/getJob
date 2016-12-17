@@ -126,9 +126,9 @@ public class RequestView extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(requestTable);
-        requestTable.getColumnModel().getColumn(0).setMinWidth(50);
-        requestTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-        requestTable.getColumnModel().getColumn(0).setMaxWidth(50);
+        requestTable.getColumnModel().getColumn(0).setMinWidth(0);
+        requestTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+        requestTable.getColumnModel().getColumn(0).setMaxWidth(0);
         requestTable.getColumnModel().getColumn(3).setMinWidth(100);
         requestTable.getColumnModel().getColumn(3).setPreferredWidth(100);
         requestTable.getColumnModel().getColumn(3).setMaxWidth(100);
