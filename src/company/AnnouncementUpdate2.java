@@ -3,6 +3,7 @@ package company;
 import db.Dbcon;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,7 +32,10 @@ public class AnnouncementUpdate2 extends javax.swing.JFrame {
                 postTextField.setText(rs.getString("post"));
                 vacancySpinner.setValue(Integer.parseInt(rs.getString("vacancy").trim()));
                 qualificationTextField.setText(rs.getString("qualification"));
-                dateTextField.setText(rs.getString("date"));
+                String dateInMilliString = rs.getString("date_in_milli");
+                long dateInMilliLong = Long.parseLong(dateInMilliString);
+                Date datee = new Date(dateInMilliLong);
+                dateXDatePicker1.setDate(datee);
                 placeTextField.setText(rs.getString("place"));
                 contactTextField.setText(rs.getString("contact"));
 
@@ -59,12 +63,12 @@ public class AnnouncementUpdate2 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         postTextField = new javax.swing.JTextField();
-        dateTextField = new javax.swing.JTextField();
         contactTextField = new javax.swing.JTextField();
         qualificationTextField = new javax.swing.JTextField();
         placeTextField = new javax.swing.JTextField();
         vacancySpinner = new javax.swing.JSpinner();
         updateButton = new javax.swing.JButton();
+        dateXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,8 +95,6 @@ public class AnnouncementUpdate2 extends javax.swing.JFrame {
         jLabel7.setText("Qualification                    :");
 
         postTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
-
-        dateTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
 
         contactTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
 
@@ -138,15 +140,17 @@ public class AnnouncementUpdate2 extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(postTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(qualificationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(dateXDatePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(qualificationTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -181,8 +185,8 @@ public class AnnouncementUpdate2 extends javax.swing.JFrame {
                     .addComponent(qualificationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,7 +228,7 @@ public class AnnouncementUpdate2 extends javax.swing.JFrame {
     }//GEN-LAST:event_placeTextFieldActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        String sql1 = "update tbl_announcement set post='" + postTextField.getText() + "',vacancy='" + vacancySpinner.getValue() + "',qualification='" + qualificationTextField.getText() + "',date='" + dateTextField.getText() + "',place='" + placeTextField.getText() + "',contact='" + contactTextField.getText() + "' where id='" + id + "'";
+        String sql1 = "update tbl_announcement set post='" + postTextField.getText() + "',vacancy='" + vacancySpinner.getValue() + "',qualification='" + qualificationTextField.getText() + "',date='" + dateXDatePicker1.getDate() + "',place='" + placeTextField.getText() + "',contact='" + contactTextField.getText() + "' where id='" + id + "'";
         Dbcon db = new Dbcon();
         int n = db.insert(sql1);
         this.setVisible(false);
@@ -266,7 +270,7 @@ public class AnnouncementUpdate2 extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField contactTextField;
-    private javax.swing.JTextField dateTextField;
+    private org.jdesktop.swingx.JXDatePicker dateXDatePicker1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

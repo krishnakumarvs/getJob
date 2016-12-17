@@ -4,6 +4,7 @@
  */
 package company;
 
+import admin.FeedbackView;
 import db.Dbcon;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,40 +18,54 @@ import javax.swing.table.DefaultTableModel;
  * @author jj
  */
 public class FeedbackViewCompany extends javax.swing.JPanel {
-int id;
-DefaultTableModel model=null;
-String date;
-String title;
-String discription;
+
+    int id;
+    DefaultTableModel model = null;
+    String date;
+    String title;
+    String discription;
+    String tableId;
+
     /**
      * Creates new form FeedbackView
      */
     public FeedbackViewCompany() {
         initComponents();
     }
+
     public FeedbackViewCompany(int id1) {
         initComponents();
-        id=id1;
+        id = id1;
         loadFeedbackTable();
     }
-private void loadFeedbackTable(){
+
+    private void loadFeedbackTable() {
         try {
-            deleteButton.setEnabled(false);
-            String sql = "select * from tbl_feedback where audence='"+id+"' and usernotification=0";
-            Dbcon db = new Dbcon();
-            model=(DefaultTableModel) feedbackListTable.getModel();
-            ResultSet rs = db.select(sql);
-            String arr[]=new String[2];
-            while(rs.next()){
-                arr[0]=rs.getString("feedbackdate");
-                arr[1]=rs.getString("title");
-                //arr[2]=rs.getString("discription");
-                model.addRow(arr);
-            }
+            String mail=null;
+           deleteButton.setEnabled(false);
+           String sql1="select*from tbl_company where id='"+id+"'";
+           Dbcon db=new Dbcon();
+           ResultSet rs1=db.select(sql1);
+           if(rs1.next()){
+               mail=rs1.getString("mail_id");
+           }
+                  String sql = "select * from tbl_feedback where audence='" + mail + "'";
+           Dbcon db1 = new Dbcon();
+           model = (DefaultTableModel) feedbackListTable.getModel();
+           ResultSet rs = db1.select(sql);
+           String arr[] = new String[2];
+           while (rs.next()) {
+               arr[0] = rs.getString("feedbackdate");
+               arr[1] = rs.getString("title");
+               //arr[2]=rs.getString("discription");
+               model.addRow(arr);
+           }
         } catch (SQLException ex) {
             Logger.getLogger(FeedbackViewCompany.class.getName()).log(Level.SEVERE, null, ex);
         }
-}
+    
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,11 +94,11 @@ private void loadFeedbackTable(){
 
             },
             new String [] {
-                "Date", "Subject"
+                "Date", "Subject", "id"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -96,6 +111,9 @@ private void loadFeedbackTable(){
             }
         });
         jScrollPane1.setViewportView(feedbackListTable);
+        feedbackListTable.getColumnModel().getColumn(2).setMinWidth(0);
+        feedbackListTable.getColumnModel().getColumn(2).setPreferredWidth(0);
+        feedbackListTable.getColumnModel().getColumn(2).setMaxWidth(0);
 
         discriptionTextArea.setEditable(false);
         discriptionTextArea.setColumns(20);
@@ -162,48 +180,45 @@ private void loadFeedbackTable(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void feedbackListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_feedbackListTableMouseClicked
-       
-         model = (DefaultTableModel) feedbackListTable.getModel();
+
+
+        model = (DefaultTableModel) feedbackListTable.getModel();
         if (model.getValueAt(feedbackListTable.getSelectedRow(), 0).toString().equals("")) {
             JOptionPane.showMessageDialog(this, "No data to select");
         } else {
             try {
-                date = model.getValueAt(feedbackListTable.getSelectedRow(), 0).toString();
-                title= model.getValueAt(feedbackListTable.getSelectedRow(), 1).toString();
-                deleteButton.setEnabled(true);
-                String sql = "SELECT * FROM tbl_feedback WHERE audence='"+id+"'AND usernotification=0 AND feedbackdate='"+date+"' AND title='"+title+"'";
+                tableId = model.getValueAt(feedbackListTable.getSelectedRow(), 2).toString();
+                String sql = "select * from tbl_feedback where id='" + id + "'";
                 Dbcon db = new Dbcon();
                 ResultSet rs = db.select(sql);
-                if(rs.next()){
-                   discription= rs.getString("discription");
-                           discriptionTextArea.setText(discription);
-                    
+                if (rs.next()) {
+                    discriptionTextArea.setText(rs.getString("discription"));
                 }
-            }
-            // TODO add your handling code here:
+
+                deleteButton.setEnabled(true);
+            } // TODO add your handling code here:
             catch (SQLException ex) {
-                Logger.getLogger(FeedbackViewCompany.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FeedbackView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
+
+
+
         // TODO add your handling code here:
     }//GEN-LAST:event_feedbackListTableMouseClicked
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        String sql = "delete from tbl_feedback where title='"+title+"' and feedbackdate='"+date+"' and discription='"+discription+"'";
+        String sql = "delete from tbl_feedback where id='" + id + "'";
         Dbcon db = new Dbcon();
         int n = db.insert(sql);
+
         FeedbackViewCompany feedbackViewCompany = new FeedbackViewCompany(id);
         this.getParent().add(feedbackViewCompany);
         this.setVisible(false);
         feedbackViewCompany.setVisible(true);
         this.revalidate();
         this.repaint();
-        
-        // TODO add your handling code here:
     }//GEN-LAST:event_deleteButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextArea discriptionTextArea;

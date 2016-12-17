@@ -7,6 +7,8 @@ package company;
 import db.Dbcon;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -242,7 +244,14 @@ public class FeedbackCreate extends javax.swing.JPanel {
         } else if ("admin".equals(audence)) {
             audence1 = "admin";
         }
-        String sql = "insert into tbl_feedback(owner,audence,title,discription,notification) values('" + id + "','" + audence1 + "','" + title + "','" + discription + "','" + audence + "')";
+         long milli=System.currentTimeMillis();
+      //  Date date = new Date();
+        long date=System.currentTimeMillis();
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(milli);
+        String temp;
+       temp = c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DAY_OF_MONTH);
+        String sql = "insert into tbl_feedback(owner,audence,title,discription,notification,feedbackdate,currentdate) values('" + id + "','" + audence1 + "','" + title + "','" + discription + "','" + audence + "','"+milli+"','"+temp+"')";
         Dbcon db = new Dbcon();
         int n = db.insert(sql);
         parentframe.getContentPane().removeAll();
@@ -266,7 +275,7 @@ public class FeedbackCreate extends javax.swing.JPanel {
             Dbcon db = new Dbcon();
             ResultSet rs = db.select(sql);
             while (rs.next()) {
-                companyComboBox.addItem(rs.getString("name"));
+                companyComboBox.addItem(rs.getString("mail_id"));
             }
             // TODO add your handling code here:
     }//GEN-LAST:event_companyRadioButtonActionPerformed
@@ -284,7 +293,7 @@ public class FeedbackCreate extends javax.swing.JPanel {
             ResultSet rs1 = db1.select(sql);
 
             while (rs1.next()) {
-                userComboBox.addItem(rs1.getString("name"));
+                userComboBox.addItem(rs1.getString("email_id"));
             }
 
             // TODO add your handling code here:
