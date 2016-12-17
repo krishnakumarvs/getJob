@@ -1,25 +1,31 @@
 package company;
 
 import admin.LoginAdmin;
+import getjob.start_frame;
 import java.awt.FlowLayout;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class HomePageCompany extends javax.swing.JFrame {
-int id;
-public static int flag=0;
+
+    int id;
+    public static int flag = 0;
+
     public HomePageCompany() {
         initComponents();
         this.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
-       
-    }
-     public HomePageCompany(int id1) {
-        initComponents();
-        id=id1;
-        this.setLayout(new FlowLayout());
-        this.setLocationRelativeTo(null);
+        
     }
 
+    public HomePageCompany(int id1) {
+        initComponents();
+        id = id1;
+        this.setLayout(new FlowLayout());
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -178,25 +184,25 @@ public static int flag=0;
         this.revalidate();
         this.repaint();            // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
-
+    
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         this.getContentPane().removeAll();
-        ProfileUpdate profileUpdate = new ProfileUpdate(id,this);
+        ProfileUpdate profileUpdate = new ProfileUpdate(id, this);
         this.add(profileUpdate);
         profileUpdate.setVisible(true);
         this.revalidate();
         this.repaint();            // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-
+    
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         this.getContentPane().removeAll();
-        AnnouncementAdd announcementAdd = new AnnouncementAdd(id,this);
+        AnnouncementAdd announcementAdd = new AnnouncementAdd(id, this);
         this.add(announcementAdd);
         announcementAdd.setVisible(true);
         this.revalidate();
         this.repaint();         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem7ActionPerformed
-
+    
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         this.getContentPane().removeAll();
         AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id);
@@ -205,7 +211,7 @@ public static int flag=0;
         this.revalidate();
         this.repaint();         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem8ActionPerformed
-
+    
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         this.getContentPane().removeAll();
         RequestView requestView = new RequestView(id);
@@ -214,73 +220,72 @@ public static int flag=0;
         this.revalidate();
         this.repaint();         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
-
+    
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         this.getContentPane().removeAll();
-        FeedbackCreate feedbackCreate = new FeedbackCreate(id,this);
+        FeedbackCreate feedbackCreate = new FeedbackCreate(id, this);
         this.add(feedbackCreate);
         feedbackCreate.setVisible(true);
         this.revalidate();
         this.repaint();         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem10ActionPerformed
-
+    
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         this.getContentPane().removeAll();
         FeedbackViewCompany feedbackViewCompany = new FeedbackViewCompany(id);
         this.add(feedbackViewCompany);
         feedbackViewCompany.setVisible(true);
         this.revalidate();
-        this.repaint();         
+        this.repaint();        
     }//GEN-LAST:event_jMenuItem11ActionPerformed
-
+    
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         this.getContentPane().removeAll();
-        ChangePasswordCompany changePasswordCompany = new ChangePasswordCompany(id,this);
+        ChangePasswordCompany changePasswordCompany = new ChangePasswordCompany(id, this);
         this.add(changePasswordCompany);
         changePasswordCompany.setVisible(true);
         this.revalidate();
         this.repaint();        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+    
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         this.getContentPane().removeAll();
-        ChangeUserNameCompany changeUserNameCompany = new ChangeUserNameCompany(id,this);
+        ChangeUserNameCompany changeUserNameCompany = new ChangeUserNameCompany(id, this);
         this.add(changeUserNameCompany);
         changeUserNameCompany.setVisible(true);
         this.revalidate();
-        this.repaint();         
+        this.repaint();        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
+    
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         JOptionPane oppane = new JOptionPane();
         int option = oppane.showConfirmDialog(oppane, "Are You Sure To Logout?");
         if (option == JOptionPane.YES_OPTION) {
-            new LoginAdmin().setVisible(true);
+            new start_frame().setVisible(true);
             this.dispose();
         }         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem12ActionPerformed
-
+    
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-
-        System.out.println("hello"+flag);
         
-         if(flag==1){
-             this.getContentPane().removeAll();
-        AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id);
-        this.add(announcementUpdate1);
-        announcementUpdate1.setVisible(true);
-        this.revalidate();
-        this.repaint();  
-         }
-         else if(flag==1){
+        System.out.println("hello" + flag);
+        
+        if (flag == 1) {
             this.getContentPane().removeAll();
-        RequestView requestView = new RequestView(id);
-        this.add(requestView);
-        requestView.setVisible(true);
-        this.revalidate();
-        this.repaint();  
+            AnnouncementUpdate1 announcementUpdate1 = new AnnouncementUpdate1(id);
+            this.add(announcementUpdate1);
+            announcementUpdate1.setVisible(true);
+            this.revalidate();
+            this.repaint();            
+        } else if (flag == 1) {
+            this.getContentPane().removeAll();
+            RequestView requestView = new RequestView(id);
+            this.add(requestView);
+            requestView.setVisible(true);
+            this.revalidate();
+            this.repaint();            
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowActivated
 
