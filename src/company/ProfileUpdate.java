@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -222,10 +224,17 @@ HomePageCompany parentFrame;
     }//GEN-LAST:event_emailIdTextFieldActionPerformed
 
     private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
+        if(nameTextField.getText().equals("")||addressTextField.getText().equals("")||phoneTextField.getText().equals("")||emailIdTextField.getText().equals("")||discriptionTextArea.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "please enter all fields");
+            
+        }
+        else{
         String sql1="update tbl_company set name='"+nameTextField.getText()+"',address='"+addressTextField.getText()+"',phone_no='"+phoneTextField.getText()+"',mail_id='"+emailIdTextField.getText()+"',discription='"+discriptionTextArea.getText()+"' where id='"+id+"'";
         int n;
         Dbcon db=new Dbcon();
         db.insert(sql1);
+        JOptionPane.showMessageDialog(this, "successfully updated");
+        }
         parentFrame.getContentPane().removeAll();
         parentFrame.repaint();
         parentFrame.revalidate();

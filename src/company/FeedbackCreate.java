@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,13 +28,13 @@ public class FeedbackCreate extends javax.swing.JPanel {
     public FeedbackCreate() {
         initComponents();
         companyComboBox.setVisible(false);
-            userComboBox.setVisible(false);
+        userComboBox.setVisible(false);
     }
 
     public FeedbackCreate(int id1, HomePageCompany parentframe) {
         initComponents();
         companyComboBox.setVisible(false);
-            userComboBox.setVisible(false);
+        userComboBox.setVisible(false);
         this.parentframe = parentframe;
         id = id1;
 
@@ -244,16 +245,21 @@ public class FeedbackCreate extends javax.swing.JPanel {
         } else if ("admin".equals(audence)) {
             audence1 = "admin";
         }
-         long milli=System.currentTimeMillis();
-      //  Date date = new Date();
-        long date=System.currentTimeMillis();
+        long milli = System.currentTimeMillis();
+        //  Date date = new Date();
+        long date = System.currentTimeMillis();
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(milli);
         String temp;
-       temp = c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DAY_OF_MONTH);
-        String sql = "insert into tbl_feedback(owner,audence,title,discription,notification,feedbackdate,currentdate) values('" + id + "','" + audence1 + "','" + title + "','" + discription + "','" + audence + "','"+milli+"','"+temp+"')";
-        Dbcon db = new Dbcon();
-        int n = db.insert(sql);
+        temp = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH) + 1) + "-" + c.get(Calendar.DAY_OF_MONTH);
+        if ((titleTextField.getText().equals("")) || (discriptionTextArea.getText().equals("")) || (audencebuttonGroup.getSelection().getActionCommand().equals(""))) {
+            JOptionPane.showMessageDialog(this, "please enter all feilds");
+        } else {
+            String sql = "insert into tbl_feedback(owner,audence,title,discription,notification,feedbackdate,currentdate) values('" + id + "','" + audence1 + "','" + title + "','" + discription + "','" + audence + "','" + milli + "','" + temp + "')";
+            Dbcon db = new Dbcon();
+            int n = db.insert(sql);
+            JOptionPane.showMessageDialog(this, "successfully inserted");
+        }
         parentframe.getContentPane().removeAll();
         parentframe.repaint();
         parentframe.revalidate();

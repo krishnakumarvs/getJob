@@ -7,6 +7,7 @@ package company;
 import db.Dbcon;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -203,6 +204,14 @@ HomePageCompany parentFrame;
     }//GEN-LAST:event_placeTextFieldActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        if(postTextField.getText().equals("")||vacancySpinner.getValue().equals(0)||qualificationTextField.getText().equals("")||dateXDatePicker1.getDate().equals("")||placeTextField.getText().equals("")||contactTextField.getText().equals("")){
+             JOptionPane.showMessageDialog(this, "please enter all fields");
+        }
+        
+        else{
+        
+        
+        
         Date date=dateXDatePicker1.getDate();
        // System.out.println(date);
         //Long datee=Long.parseLong(date);
@@ -217,9 +226,11 @@ HomePageCompany parentFrame;
         int n;
         Dbcon db=new Dbcon();
         db.insert(sql);
+        JOptionPane.showMessageDialog(this," successfully inserted" );
          parentFrame.getContentPane().removeAll();
         parentFrame.repaint();
         parentFrame.revalidate();
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_submitButtonActionPerformed
 

@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class AnnouncementUpdate2 extends javax.swing.JFrame {
 
@@ -236,6 +237,12 @@ HomePageCompany parentframe;
     }//GEN-LAST:event_placeTextFieldActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        if(postTextField.getText().equals("")||vacancySpinner.getValue().equals(0)||qualificationTextField.getText().equals("")||dateXDatePicker1.getDate().equals("")||placeTextField.getText().equals("")||contactTextField.getText().equals("")){
+             JOptionPane.showMessageDialog(this, "please enter all fields");
+        }
+        
+        else{
+        
         Date date=dateXDatePicker1.getDate();
        // System.out.println(date);
         //Long datee=Long.parseLong(date);
@@ -249,10 +256,11 @@ HomePageCompany parentframe;
         String sql1 = "update tbl_announcement set date_in_milli='"+datemilli+"',post='" + postTextField.getText() + "',vacancy='" + vacancySpinner.getValue() + "',qualification='" + qualificationTextField.getText() + "',date='" + datee + "',place='" + placeTextField.getText() + "',contact='" + contactTextField.getText() + "' where id='" + id + "'";
         Dbcon db = new Dbcon();
         int n = db.insert(sql1);
+         JOptionPane.showMessageDialog(this, " Successfully updated  ");
         enableParent();
         this.setVisible(false);
         
-        
+        } 
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

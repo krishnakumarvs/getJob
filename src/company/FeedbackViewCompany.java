@@ -46,17 +46,18 @@ public class FeedbackViewCompany extends javax.swing.JPanel {
            String sql1="select*from tbl_company where id='"+id+"'";
            Dbcon db=new Dbcon();
            ResultSet rs1=db.select(sql1);
-           if(rs1.next()){
+           while(rs1.next()){
                mail=rs1.getString("mail_id");
            }
                   String sql = "select * from tbl_feedback where audence='" + mail + "'";
            Dbcon db1 = new Dbcon();
            model = (DefaultTableModel) feedbackListTable.getModel();
            ResultSet rs = db1.select(sql);
-           String arr[] = new String[2];
+           String arr[] = new String[3];
            while (rs.next()) {
                arr[0] = rs.getString("feedbackdate");
                arr[1] = rs.getString("title");
+               arr[2]=rs.getString("id");
                //arr[2]=rs.getString("discription");
                model.addRow(arr);
            }
@@ -188,7 +189,7 @@ public class FeedbackViewCompany extends javax.swing.JPanel {
         } else {
             try {
                 tableId = model.getValueAt(feedbackListTable.getSelectedRow(), 2).toString();
-                String sql = "select * from tbl_feedback where id='" + id + "'";
+                String sql = "select * from tbl_feedback where id='" + tableId + "'";
                 Dbcon db = new Dbcon();
                 ResultSet rs = db.select(sql);
                 if (rs.next()) {
