@@ -238,7 +238,7 @@ HomePageCompany parentframe;
     }//GEN-LAST:event_placeTextFieldActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        if(postTextField.getText().equals("")||vacancySpinner.getValue().equals(0)||qualificationTextField.getText().equals("")||dateXDatePicker1.getDate().equals("")||placeTextField.getText().equals("")||contactTextField.getText().equals("")){
+        if(postTextField.getText().equals("")||vacancySpinner.getValue().equals(0)||qualificationTextField.getText().equals("")||dateXDatePicker1.getDate()==null||placeTextField.getText().equals("")||contactTextField.getText().equals("")){
              JOptionPane.showMessageDialog(this, "please enter all fields");
         }
         
