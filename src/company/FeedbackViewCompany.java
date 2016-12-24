@@ -8,6 +8,7 @@ import admin.FeedbackView;
 import db.Dbcon;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -41,30 +42,44 @@ public class FeedbackViewCompany extends javax.swing.JPanel {
 
     private void loadFeedbackTable() {
         try {
-            String mail=null;
-           deleteButton.setEnabled(false);
-           String sql1="select*from tbl_company where id='"+id+"'";
-           Dbcon db=new Dbcon();
-           ResultSet rs1=db.select(sql1);
-           while(rs1.next()){
-               mail=rs1.getString("mail_id");
-           }
-                  String sql = "select * from tbl_feedback where audence='" + mail + "'";
-           Dbcon db1 = new Dbcon();
-           model = (DefaultTableModel) feedbackListTable.getModel();
-           ResultSet rs = db1.select(sql);
-           String arr[] = new String[3];
-           while (rs.next()) {
-               arr[0] = rs.getString("feedbackdate");
-               arr[1] = rs.getString("title");
-               arr[2]=rs.getString("id");
-               //arr[2]=rs.getString("discription");
-               model.addRow(arr);
-           }
+            String mail = null;
+            deleteButton.setEnabled(false);
+            String sql1 = "select*from tbl_company where id='" + id + "'";
+            Dbcon db = new Dbcon();
+            ResultSet rs1 = db.select(sql1);
+            while (rs1.next()) {
+                mail = rs1.getString("mail_id");
+            }
+            String sql = "select * from tbl_feedback where audence='" + mail + "'";
+            Dbcon db1 = new Dbcon();
+            model = (DefaultTableModel) feedbackListTable.getModel();
+            ResultSet rs = db1.select(sql);
+            String arr[] = new String[3];
+            String d = "";
+            long da;
+            while (rs.next()) {
+                d = rs.getString("feedbackdate");
+da=Long.parseLong(d);
+
+Calendar calendar = Calendar.getInstance();
+calendar.setTimeInMillis(da);
+
+int mYear = calendar.get(Calendar.YEAR);
+int mMonth = calendar.get(Calendar.MONTH);
+int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+               // Date date = new Date(d);
+//System.out.println(mDay+":"+mMonth+":"+mYear);
+d=mDay+":"+mMonth+":"+mYear;
+                arr[0] =d;
+                arr[1] = rs.getString("title");
+                arr[2] = rs.getString("id");
+
+                model.addRow(arr);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(FeedbackViewCompany.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     }
 
     /**
@@ -184,7 +199,7 @@ public class FeedbackViewCompany extends javax.swing.JPanel {
 
 
         model = (DefaultTableModel) feedbackListTable.getModel();
-        if (model.getValueAt(feedbackListTable.getSelectedRow(), 0).toString().equals("")) {
+        if (model.getValueAt(feedbackListTable.getSelectedRow(), 2).toString().equals("")) {
             JOptionPane.showMessageDialog(this, "No data to select");
         } else {
             try {
@@ -209,7 +224,7 @@ public class FeedbackViewCompany extends javax.swing.JPanel {
     }//GEN-LAST:event_feedbackListTableMouseClicked
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        String sql = "delete from tbl_feedback where id='" + id + "'";
+        String sql = "delete from tbl_feedback where id='" + tableId + "'";
         Dbcon db = new Dbcon();
         int n = db.insert(sql);
 
