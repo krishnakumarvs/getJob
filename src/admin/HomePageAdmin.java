@@ -6,6 +6,7 @@ package admin;
 
 import getjob.start_frame;
 import java.awt.FlowLayout;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +22,7 @@ public static int flag=0;
         initComponents();
         this.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
+         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
