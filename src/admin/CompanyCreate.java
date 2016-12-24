@@ -14,17 +14,19 @@ import javax.swing.JOptionPane;
  * @author jj
  */
 public class CompanyCreate extends javax.swing.JPanel {
-HomePageAdmin parentframe;
+
+    HomePageAdmin parentframe;
+
     /**
      * Creates new form CreateCompany
      */
-    public CompanyCreate(HomePageAdmin parentframe)
-    {
+    public CompanyCreate(HomePageAdmin parentframe) {
         initComponents();
-        this.parentframe=parentframe;
-        
+        this.parentframe = parentframe;
+
     }
- public static String createPassword(int len) {
+
+    public static String createPassword(int len) {
         String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         SecureRandom rnd = new SecureRandom();
 
@@ -197,34 +199,33 @@ HomePageAdmin parentframe;
     }//GEN-LAST:event_phoneNoTextFieldActionPerformed
 
 private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-String pass=createPassword(7);
-String name1=nameTextField.getText();
-String email=emailIdTextField.getText();
-String phone=phoneNoTextField.getText();
-String address1=addressTextField.getText();
-if(nameTextField.getText().equals("")|| emailIdTextField.getText().equals("")||phoneNoTextField.getText().equals("")|| addressTextField.getText().equals("") ){
-    JOptionPane.showMessageDialog(this, "please enter all fields");
-}
-else{
-   
+    String pass = createPassword(7);
+    String name1 = nameTextField.getText();
+    String email = emailIdTextField.getText();
+    String phone = phoneNoTextField.getText();
+    String address1 = addressTextField.getText();
+    if (nameTextField.getText().equals("") || emailIdTextField.getText().equals("") || phoneNoTextField.getText().equals("") || addressTextField.getText().equals("")) {
+        JOptionPane.showMessageDialog(this, "please enter all fields");
+    } else {
 
-String sql="insert into tbl_company (name,mail_id,phone_no,address,username,password) values('"+name1+"','"+email+"','"+phone+"','"+address1+"','"+name1+"','"+pass+"')";
-int ins;
-Dbcon db=new Dbcon();
-            ins=db.insert(sql);
-           JOptionPane.showMessageDialog(this," successfully inserted" );
-            }
- parentframe.getContentPane().removeAll();
+
+        String sql = "insert into tbl_company (name,mail_id,phone_no,address,username,password) values('" + name1 + "','" + email + "','" + phone + "','" + address1 + "','" + name1 + "','" + pass + "')";
+        int ins;
+        Dbcon db = new Dbcon();
+        ins = db.insert(sql);
+        JOptionPane.showMessageDialog(this, " successfully inserted");
+        parentframe.getContentPane().removeAll();
         parentframe.repaint();
         parentframe.revalidate();
+    }
+
 }//GEN-LAST:event_createButtonActionPerformed
 
 private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-parentframe.getContentPane().removeAll();
-parentframe.repaint();
-parentframe.revalidate();// TODO add your handling code here:
+    parentframe.getContentPane().removeAll();
+    parentframe.repaint();
+    parentframe.revalidate();// TODO add your handling code here:
 }//GEN-LAST:event_cancelButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTextField;
     private javax.swing.JButton cancelButton;

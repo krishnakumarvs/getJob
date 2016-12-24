@@ -12,17 +12,21 @@ import javax.swing.JOptionPane;
  * @author jj
  */
 public class ChangePasswordAdmin extends javax.swing.JPanel {
-HomePageAdmin parentframe;
+
+    HomePageAdmin parentframe;
+
     /**
      * Creates new form PasswordSetting
      */
     public ChangePasswordAdmin() {
         initComponents();
     }
- public ChangePasswordAdmin(HomePageAdmin parentframe) {
+
+    public ChangePasswordAdmin(HomePageAdmin parentframe) {
         initComponents();
-        this.parentframe=parentframe;
+        this.parentframe = parentframe;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,33 +132,31 @@ HomePageAdmin parentframe;
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
- parentframe.getContentPane().removeAll();
+        parentframe.getContentPane().removeAll();
         parentframe.repaint();
         parentframe.revalidate();        // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
 
 private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-String pass=currentPasswordField1.getText();
-String newpas=newPasswordField3.getText();
-String repss=repeatPasswordField2.getText();
-if(currentPasswordField1.getText().equals("")|| newPasswordField3.getText().equals("")||repeatPasswordField2.getText().equals("") ){
-    JOptionPane.showMessageDialog(this, "please enter all fields");
-}
-else{
-   
+    String pass = currentPasswordField1.getText();
+    String newpas = newPasswordField3.getText();
+    String repss = repeatPasswordField2.getText();
+    if (currentPasswordField1.getText().equals("") || newPasswordField3.getText().equals("") || repeatPasswordField2.getText().equals("")) {
+        JOptionPane.showMessageDialog(this, "please enter all fields");
+    } else {
 
-String sql="update  tbl_loginadmin set  password='"+newpas+"' where password='"+pass+"' ";
-int ins;
-Dbcon db=new Dbcon();
-            ins=db.insert(sql);
-           JOptionPane.showMessageDialog(this," successfully inserted" );
-            
-}    
- parentframe.getContentPane().removeAll();
+
+        String sql = "update  tbl_loginadmin set  password='" + newpas + "' where password='" + pass + "' ";
+        int ins;
+        Dbcon db = new Dbcon();
+        ins = db.insert(sql);
+        JOptionPane.showMessageDialog(this, " successfully inserted");
+        parentframe.getContentPane().removeAll();
         parentframe.repaint();
         parentframe.revalidate();
-}//GEN-LAST:event_okButtonActionPerformed
+    }
 
+}//GEN-LAST:event_okButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JPasswordField currentPasswordField1;

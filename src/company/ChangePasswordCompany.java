@@ -169,11 +169,11 @@ int ins;
 Dbcon db=new Dbcon();
             ins=db.insert(sql);
            JOptionPane.showMessageDialog(this," successfully inserted" );
-            
-}    
- parentframe.getContentPane().removeAll();
+            parentframe.getContentPane().removeAll();
         parentframe.repaint();
-        parentframe.revalidate();// TODO add your handling code here:
+        parentframe.revalidate();
+}    
+ // TODO add your handling code here:
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void currentPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentPasswordField1ActionPerformed

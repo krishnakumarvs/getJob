@@ -12,13 +12,15 @@ import javax.swing.JOptionPane;
  * @author jj
  */
 public class ChangeUserNameAdmin extends javax.swing.JPanel {
-HomePageAdmin parentframe;
+
+    HomePageAdmin parentframe;
+
     /**
      * Creates new form UserNameSetting
      */
     public ChangeUserNameAdmin(HomePageAdmin parentframe) {
         initComponents();
-        this.parentframe=parentframe;
+        this.parentframe = parentframe;
     }
 
     /**
@@ -132,33 +134,32 @@ HomePageAdmin parentframe;
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
- parentframe.getContentPane().removeAll();
+        parentframe.getContentPane().removeAll();
         parentframe.repaint();
         parentframe.revalidate();        // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
 
 private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-String usename=currentUserNameTextField.getText();
-String newuser=newUserNameTextField.getText();
-String reuser=repeatNewUserNameTextField.getText();
-if(currentUserNameTextField.getText().equals("")|| newUserNameTextField.getText().equals("")||repeatNewUserNameTextField.getText().equals("") ){
-    JOptionPane.showMessageDialog(this, "please enter all fields");
-}
-else{
-   
+    String usename = currentUserNameTextField.getText();
+    String newuser = newUserNameTextField.getText();
+    String reuser = repeatNewUserNameTextField.getText();
+    if (currentUserNameTextField.getText().equals("") || newUserNameTextField.getText().equals("") || repeatNewUserNameTextField.getText().equals("")) {
+        JOptionPane.showMessageDialog(this, "please enter all fields");
+    } else {
 
-String sql="update  tbl_loginadmin set  username='"+newuser+"' where username='"+usename+"' ";
-int ins;
-Dbcon db=new Dbcon();
-            ins=db.insert(sql);
-           JOptionPane.showMessageDialog(this," successfully inserted" );
-} 
- parentframe.getContentPane().removeAll();
+
+        String sql = "update  tbl_loginadmin set  username='" + newuser + "' where username='" + usename + "' ";
+        int ins;
+        Dbcon db = new Dbcon();
+        ins = db.insert(sql);
+        JOptionPane.showMessageDialog(this, " successfully inserted");
+        parentframe.getContentPane().removeAll();
         parentframe.repaint();
         parentframe.revalidate();
+    }
+
 // TODO add your handling code here:
 }//GEN-LAST:event_okButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextField currentUserNameTextField;

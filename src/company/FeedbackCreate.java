@@ -123,6 +123,7 @@ public class FeedbackCreate extends javax.swing.JPanel {
         });
 
         audencebuttonGroup.add(adminRadioButton);
+        adminRadioButton.setSelected(true);
         adminRadioButton.setText("Admin");
         adminRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,10 +260,11 @@ public class FeedbackCreate extends javax.swing.JPanel {
             Dbcon db = new Dbcon();
             int n = db.insert(sql);
             JOptionPane.showMessageDialog(this, "successfully inserted");
-        }
-        parentframe.getContentPane().removeAll();
+            parentframe.getContentPane().removeAll();
         parentframe.repaint();
         parentframe.revalidate();
+        }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_submitButtonActionPerformed
 
