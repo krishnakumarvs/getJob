@@ -22,6 +22,7 @@ HomePageCompany parentframe;
     public AnnouncementUpdate2(String id1,HomePageCompany parentframe) {
         initComponents();
         id = id1;
+         this.setLocationRelativeTo(null);
         loadProfileCompany();
         this.parentframe= parentframe;
     }
