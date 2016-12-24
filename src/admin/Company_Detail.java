@@ -28,6 +28,7 @@ public class Company_Detail extends javax.swing.JFrame {
     public Company_Detail(String id1) {
         initComponents();
         companyId = id1;
+         this.setLocationRelativeTo(null);
         loadCompanyDetails();
     }
 
