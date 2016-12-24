@@ -27,6 +27,9 @@ public class ProfileViewUser extends javax.swing.JFrame {
 
     public ProfileViewUser(String id1) {
         initComponents();
+        
+       
+        this.setLocationRelativeTo(null);
         requestId = id1;
         loadUserProfile();
     }
