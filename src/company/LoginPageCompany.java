@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,14 +21,38 @@ public class LoginPageCompany extends javax.swing.JFrame {
     String name;
     String pass;
 
+     final String PREF_REMEMBER_PASSWORD_COMPANY = "remember_password_company";
+    final String PREF_USER_NAME_COMPANY = "p_user_name_company";
+    final String PREF_PASSWORD_COMPANY = "p_password_company";
+    //String newValue;
+    
+    Preferences prefs1 = Preferences.userNodeForPackage(LoginPageCompany.class);
     /**
      * Creates new form LoginPage
      */
     public LoginPageCompany() {
         initComponents();
         this.setLocationRelativeTo(null);
+         getPreviousRememberdPassword();
+    }
+ private void getPreviousRememberdPassword() {
+        String previosValues = prefs1.get(PREF_REMEMBER_PASSWORD_COMPANY, "false");
+        if (previosValues.equals("true")) {
+            rememberPasswordCheckBox.setSelected(true);
+            String storedUserName = prefs1.get(PREF_USER_NAME_COMPANY, "");
+            System.out.println(storedUserName);
+            userNameTextField.setText(storedUserName);
+            String storedPassword = prefs1.get(PREF_PASSWORD_COMPANY, "");
+            passwordField.setText(storedPassword);
+            System.out.println(storedPassword);
+            
+        } else {
+            rememberPasswordCheckBox.setSelected(false);
+        }
+        System.out.println(previosValues);
     }
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,16 +85,18 @@ public class LoginPageCompany extends javax.swing.JFrame {
         jLabel4.setText("PASSWORD                :");
 
         rememberPasswordCheckBox.setText("Rememer  Passwod");
+        rememberPasswordCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rememberPasswordCheckBoxActionPerformed(evt);
+            }
+        });
 
         userNameTextField.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
-        userNameTextField.setText("Dream");
         userNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameTextFieldActionPerformed(evt);
             }
         });
-
-        passwordField.setText("dream12345");
 
         loginButton.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
         loginButton.setText("Login");
@@ -170,6 +197,8 @@ private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         Dbcon db = new Dbcon();
         rs = db.select(sql);
         if (rs.next()) {
+              prefs1.put(PREF_USER_NAME_COMPANY, userNameTextField.getText());
+            prefs1.put(PREF_PASSWORD_COMPANY, passwordField.getText());
             int id=rs.getInt("id");
             new HomePageCompany(id).setVisible(true);
             this.dispose();
@@ -190,6 +219,15 @@ private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         userNameTextField.setText("");
         passwordField.setText("");
     }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void rememberPasswordCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rememberPasswordCheckBoxActionPerformed
+
+        
+
+        boolean rememberPasssword = rememberPasswordCheckBox.isSelected();
+        prefs1.put(PREF_REMEMBER_PASSWORD_COMPANY, rememberPasssword + "");
+      
+    }//GEN-LAST:event_rememberPasswordCheckBoxActionPerformed
 
     /**
      * @param args the command line arguments
