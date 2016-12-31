@@ -122,6 +122,9 @@ d=mDay+":"+mMonth+":"+mYear;
             }
         });
         feedbackListTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                feedbackListTableMouseEntered(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 feedbackListTableMouseClicked(evt);
             }
@@ -235,6 +238,11 @@ d=mDay+":"+mMonth+":"+mYear;
         this.revalidate();
         this.repaint();
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void feedbackListTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_feedbackListTableMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_feedbackListTableMouseEntered
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextArea discriptionTextArea;
