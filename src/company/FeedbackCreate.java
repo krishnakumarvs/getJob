@@ -11,6 +11,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,25 +30,25 @@ public class FeedbackCreate extends javax.swing.JPanel {
     public FeedbackCreate() {
         initComponents();
         companyComboBox.setVisible(false);
-        userComboBox.setVisible(false);
+       // userComboBox.setVisible(false);
     }
 
     public FeedbackCreate(int id1, HomePageCompany parentframe) {
         initComponents();
         companyComboBox.setVisible(false);
-        userComboBox.setVisible(false);
+       // userComboBox.setVisible(false);
         this.parentframe = parentframe;
         id = id1;
 
     }
 
-    private void loadPanal() {
+  /*  private void loadPanal() {
         try {
             companyComboBox.setVisible(false);
-            userComboBox.setVisible(false);
+           // userComboBox.setVisible(false);
             adminRadioButton.setActionCommand("admin");
             companyRadioButton.setActionCommand("company");
-            userRadioButton.setActionCommand("user");
+           // userRadioButton.setActionCommand("user");
             String sql = "select * from tbl_company";
             Dbcon db = new Dbcon();
             ResultSet rs = db.select(sql);
@@ -63,7 +65,7 @@ public class FeedbackCreate extends javax.swing.JPanel {
             Logger.getLogger(FeedbackCreate.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,7 +89,6 @@ public class FeedbackCreate extends javax.swing.JPanel {
         userRadioButton = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         companyComboBox = new javax.swing.JComboBox();
-        userComboBox = new javax.swing.JComboBox();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
@@ -150,6 +151,12 @@ public class FeedbackCreate extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         jLabel4.setText("Audence                    :");
 
+        companyComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                companyComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,9 +197,7 @@ public class FeedbackCreate extends javax.swing.JPanel {
                 .addGap(95, 95, 95))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(companyComboBox, 0, 253, Short.MAX_VALUE)
-                    .addComponent(userComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(companyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -216,9 +221,7 @@ public class FeedbackCreate extends javax.swing.JPanel {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(companyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(userComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(submitButton))
@@ -242,7 +245,7 @@ public class FeedbackCreate extends javax.swing.JPanel {
         if ("company".equals(audence)) {
             audence1 = (String) companyComboBox.getSelectedItem();
         } else if ("user".equals(audence)) {
-            audence1 = (String) userComboBox.getSelectedItem();
+            audence1 = (String) companyComboBox.getSelectedItem();
         } else if ("admin".equals(audence)) {
             audence1 = "admin";
         }
@@ -271,14 +274,23 @@ public class FeedbackCreate extends javax.swing.JPanel {
     private void adminRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminRadioButtonActionPerformed
         adminRadioButton.setActionCommand("admin");
         companyComboBox.setVisible(false);
-        userComboBox.setVisible(false);  // TODO add your handling code here:
+       // userComboBox.setVisible(false);  // TODO add your handling code here:
     }//GEN-LAST:event_adminRadioButtonActionPerformed
 
+    private void clearAllItemsInCombo(JComboBox combo) {
+        int itemCount = combo.getItemCount();
+        for (int i = 0; i < itemCount; i++) {
+            combo.removeItemAt(0);
+        }
+    }
+    
     private void companyRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_companyRadioButtonActionPerformed
         try {
+            
             companyRadioButton.setActionCommand("company");
             companyComboBox.setVisible(true);
-            userComboBox.setVisible(false);
+            clearAllItemsInCombo(companyComboBox);
+           // userComboBox.setVisible(false);
             String sql = "select * from tbl_company";
             Dbcon db = new Dbcon();
             ResultSet rs = db.select(sql);
@@ -294,14 +306,15 @@ public class FeedbackCreate extends javax.swing.JPanel {
     private void userRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userRadioButtonActionPerformed
         try {
             userRadioButton.setActionCommand("user");
-            companyComboBox.setVisible(false);
-            userComboBox.setVisible(true);
+            companyComboBox.setVisible(true);
+            clearAllItemsInCombo(companyComboBox);
+           // userComboBox.setVisible(true);
             String sql = "select * from tbl_userview";
             Dbcon db1 = new Dbcon();
             ResultSet rs1 = db1.select(sql);
 
             while (rs1.next()) {
-                userComboBox.addItem(rs1.getString("email_id"));
+                companyComboBox.addItem(rs1.getString("email_id"));
             }
 
             // TODO add your handling code here:
@@ -310,6 +323,12 @@ public class FeedbackCreate extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_userRadioButtonActionPerformed
+
+    private void companyComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_companyComboBoxActionPerformed
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_companyComboBoxActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton adminRadioButton;
     private javax.swing.ButtonGroup audencebuttonGroup;
@@ -324,7 +343,6 @@ public class FeedbackCreate extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton submitButton;
     private javax.swing.JTextField titleTextField;
-    private javax.swing.JComboBox userComboBox;
     private javax.swing.JRadioButton userRadioButton;
     // End of variables declaration//GEN-END:variables
 }
