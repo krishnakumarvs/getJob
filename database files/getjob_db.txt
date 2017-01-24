@@ -1,1 +1,143 @@
-`tbl_feedback`
+/*
+SQLyog Community v8.82 
+MySQL - 5.6.25-log : Database - getjob_db
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`getjob_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `getjob_db`;
+
+/*Table structure for table `tbl_announcement` */
+
+DROP TABLE IF EXISTS `tbl_announcement`;
+
+CREATE TABLE `tbl_announcement` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post` varchar(100) DEFAULT NULL,
+  `vacancy` varchar(100) DEFAULT NULL,
+  `qualification` varchar(100) DEFAULT NULL,
+  `date_in_milli` varchar(100) DEFAULT NULL,
+  `place` varchar(100) DEFAULT NULL,
+  `contact` varchar(20) NOT NULL,
+  `companyId` int(11) DEFAULT NULL,
+  `date` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_announcement` */
+
+insert  into `tbl_announcement`(`id`,`post`,`vacancy`,`qualification`,`date_in_milli`,`place`,`contact`,`companyId`,`date`) values (11,'ffdghjk','4','fghjk','1482777000000','dfghjkl','853265',1,'2016-12-27');
+
+/*Table structure for table `tbl_company` */
+
+DROP TABLE IF EXISTS `tbl_company`;
+
+CREATE TABLE `tbl_company` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `mail_id` varchar(100) DEFAULT NULL,
+  `phone_no` varchar(20) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `discription` varchar(200) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_company` */
+
+insert  into `tbl_company`(`id`,`name`,`mail_id`,`phone_no`,`address`,`discription`,`password`,`username`) values (1,'Dream','dreamkochi@gamil.com','9898989898','Kochin','Most famous company in this country.\n\nIt is the highest profit earning company.\ngood','dream12345','dream'),(4,'Pauls','paul@gmail.com','9898784758','Kochin',NULL,NULL,'Pauls'),(5,'Red hat','redhat@gmail.com','56465456465','cochin',NULL,NULL,'Red hat');
+
+/*Table structure for table `tbl_feedback` */
+
+DROP TABLE IF EXISTS `tbl_feedback`;
+
+CREATE TABLE `tbl_feedback` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner` varchar(100) DEFAULT NULL,
+  `audence` varchar(100) DEFAULT NULL,
+  `title` varchar(200) DEFAULT NULL,
+  `discription` varchar(300) DEFAULT NULL,
+  `feedbackdate` varchar(20) DEFAULT NULL,
+  `notification` varchar(300) NOT NULL DEFAULT 'admin',
+  `currentdate` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_feedback` */
+
+insert  into `tbl_feedback`(`id`,`owner`,`audence`,`title`,`discription`,`feedbackdate`,`notification`,`currentdate`) values (18,'1','angel@gmail.com','not access','not access your site','1481959038686','company','2016-12-17'),(19,'1','manu@gmail.com','interview','your selected for interview','1481959107906','user','2016-12-17'),(20,'1','dreamkochi@gamil.com','ghfftf','fcgvjkhlkhgjhg','1482464203051','company','2016-12-23'),(21,'1','manu@gmail.com','gybfdddvhtn','ytbgvfcd','1482464732526','user','2016-12-23'),(22,'1','admin','uhytgrfedws','nhbgvfcdxsa','1482465138496','admin','2016-12-23'),(23,'1','paul@gmail.com','lkjhgfd','.,mjhgfw','1482465157378','company','2016-12-23'),(25,'1','manu@gmail.com','kjhgfdsa','LIKJHGFDSA','1482465243995','user','2016-12-23');
+
+/*Table structure for table `tbl_loginadmin` */
+
+DROP TABLE IF EXISTS `tbl_loginadmin`;
+
+CREATE TABLE `tbl_loginadmin` (
+  `no` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_loginadmin` */
+
+insert  into `tbl_loginadmin`(`no`,`username`,`password`) values (1,'Admin','admin123');
+
+/*Table structure for table `tbl_request` */
+
+DROP TABLE IF EXISTS `tbl_request`;
+
+CREATE TABLE `tbl_request` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `companyId` int(11) DEFAULT NULL,
+  `Status` varchar(20) DEFAULT 'Requested',
+  `name` varchar(100) DEFAULT NULL,
+  `qualification` varchar(100) DEFAULT NULL,
+  `post` varchar(100) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `experience` varchar(100) DEFAULT NULL,
+  `dob` varchar(100) DEFAULT NULL,
+  `email_id` varchar(100) DEFAULT NULL,
+  `age` int(50) DEFAULT NULL,
+  `address` varchar(200) DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_request` */
+
+insert  into `tbl_request`(`id`,`companyId`,`Status`,`name`,`qualification`,`post`,`location`,`experience`,`dob`,`email_id`,`age`,`address`,`phone`) values (1,1,'rejected','Ram','degree','manager','ernakulam','2 year','23-10-1996','ram@gmail.com',20,'kachapilly(h) ernakulam','+9156848756'),(2,1,'Approved','Anu','degree','manager','thrissur','1 year','05-11-1997','anu@gmail.com',19,'anu nivas','245687865456'),(3,1,'Approved','Priya','bcom','trainee','kollam','no','06-4-1998','priya@gmail.com',18,'priya nivas kollam','9874859612'),(6,2,'Requested','Manoj','btech','programer','thrissur','3 year','05-12-1994','manoj@gmail.com',22,'kunnathuparambil','9747865703'),(7,NULL,'Requested',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+
+/*Table structure for table `tbl_userview` */
+
+DROP TABLE IF EXISTS `tbl_userview`;
+
+CREATE TABLE `tbl_userview` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `email_id` varchar(100) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `dob` varchar(100) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `qualification` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `tbl_userview` */
+
+insert  into `tbl_userview`(`id`,`name`,`email_id`,`phone`,`address`,`dob`,`age`,`qualification`) values (1,'Mannu','manu@gmail.com','9588964248','cochi','1994-10-08',23,'degree');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
