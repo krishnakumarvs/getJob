@@ -192,7 +192,7 @@ public class FeedbackView extends javax.swing.JPanel {
             companyRadioButton1.setActionCommand("company");
             clearAllRowsFeedbackTable();
             model = (DefaultTableModel) feedbackListTable.getModel();
-            String sql = "select * from tbl_feedback where audence='admin' and notification='admin'";
+            String sql = "select * from tbl_feedback where audence='admin' and feedback='admin'";
             Dbcon db = new Dbcon();
             ResultSet rs = db.select(sql);
             String arr[] = new String[3];

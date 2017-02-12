@@ -259,7 +259,7 @@ public class FeedbackCreate extends javax.swing.JPanel {
         if ((titleTextField.getText().equals("")) || (discriptionTextArea.getText().equals("")) || (audencebuttonGroup.getSelection().getActionCommand().equals(""))) {
             JOptionPane.showMessageDialog(this, "please enter all feilds");
         } else {
-            String sql = "insert into tbl_feedback(owner,audence,title,discription,notification,feedbackdate,currentdate) values('" + id + "','" + audence1 + "','" + title + "','" + discription + "','" + audence + "','" + milli + "','" + temp + "')";
+            String sql = "insert into tbl_feedback(owner,audence,title,discription,feedback,feedbackdate,currentdate) values('" + id + "','" + audence1 + "','" + title + "','" + discription + "','" + audence + "','" + milli + "','" + temp + "')";
             Dbcon db = new Dbcon();
             int n = db.insert(sql);
             JOptionPane.showMessageDialog(this, "successfully inserted");
