@@ -214,7 +214,7 @@ public class FeedbackView extends javax.swing.JPanel {
             clearAllRowsFeedbackTable();
             discriptionTextArea.setText("");
             model = (DefaultTableModel) feedbackListTable.getModel();
-            String sql = "select * from tbl_feedback where audence='admin' and notification='user'";
+            String sql = "select * from tbl_feedback where audence='admin' and feedback='user'";
             Dbcon db = new Dbcon();
             ResultSet rs = db.select(sql);
             String arr[] = new String[3];
