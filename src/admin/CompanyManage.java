@@ -99,12 +99,14 @@ String idTable;
             }
         });
         jScrollPane1.setViewportView(companyTable);
-        companyTable.getColumnModel().getColumn(0).setMinWidth(0);
-        companyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
-        companyTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        companyTable.getColumnModel().getColumn(4).setMinWidth(150);
-        companyTable.getColumnModel().getColumn(4).setPreferredWidth(150);
-        companyTable.getColumnModel().getColumn(4).setMaxWidth(150);
+        if (companyTable.getColumnModel().getColumnCount() > 0) {
+            companyTable.getColumnModel().getColumn(0).setMinWidth(0);
+            companyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+            companyTable.getColumnModel().getColumn(0).setMaxWidth(0);
+            companyTable.getColumnModel().getColumn(4).setMinWidth(150);
+            companyTable.getColumnModel().getColumn(4).setPreferredWidth(150);
+            companyTable.getColumnModel().getColumn(4).setMaxWidth(150);
+        }
 
         detailsButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         detailsButton.setText("Details");

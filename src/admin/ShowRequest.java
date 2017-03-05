@@ -33,21 +33,23 @@ String idTable;
             deleteButton1.setEnabled(false);
             createButton.setEnabled(false);
             Dbcon db=new Dbcon();
-            String sql="select id,name,mail_id,phone_no,address from tbl_company where status=0";
+            String sql="select id,name,address,phone_no,mail_id,website from tbl_company where status=0";
             ResultSet rs=db.select(sql);
             model=(DefaultTableModel)companyTable.getModel();
-            String arr[]=new String[5];
+            String arr[]=new String[6];
             while(rs.next()){
                 String id=rs.getString("id");
                 String name=rs.getString("name");
                 String email=rs.getString("mail_id");
                 String phone=rs.getString("phone_no");
                 String address=rs.getString("address");
+                 String website=rs.getString("website");
                 arr[0]=id;
                 arr[1]=name;
-                arr[2]=email;
+                arr[2]=address;
                 arr[3]=phone;
-                arr[4]=address;
+                arr[4]=email;
+                arr[5]=website;
                 model.addRow(arr);
                 
 
@@ -79,7 +81,7 @@ String idTable;
 
             },
             new String [] {
-                "ID", "Name", "Address", "Phone", "Email ID", "Address"
+                "ID", "Name", "Address", "Phone", "Email ID", "Website"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -96,6 +98,11 @@ String idTable;
             }
         });
         jScrollPane1.setViewportView(companyTable);
+        if (companyTable.getColumnModel().getColumnCount() > 0) {
+            companyTable.getColumnModel().getColumn(0).setMinWidth(0);
+            companyTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+            companyTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 255));
