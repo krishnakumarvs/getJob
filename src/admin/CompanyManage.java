@@ -33,7 +33,7 @@ String idTable;
             deleteButton.setEnabled(false);
             detailsButton.setEnabled(false);
             Dbcon db=new Dbcon();
-            String sql="select id,name,mail_id,phone_no,address from tbl_company";
+            String sql="select id,name,mail_id,phone_no,address from tbl_company where status=1";
             ResultSet rs=db.select(sql);
             model=(DefaultTableModel)companyTable.getModel();
             String arr[]=new String[5];

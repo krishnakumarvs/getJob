@@ -64,7 +64,7 @@ public static int flag=0;
 
         jMenu1.setText("Company");
 
-        jMenuItem1.setText("Create");
+        jMenuItem1.setText("View Request");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -164,9 +164,9 @@ public static int flag=0;
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
         this.getContentPane().removeAll();
-        CompanyCreate companyCreate = new CompanyCreate(this);
-        this.add(companyCreate);
-        companyCreate.setVisible(true);
+        ShowRequest showRequest = new ShowRequest(this);
+        this.add(showRequest);
+        showRequest.setVisible(true);
         this.revalidate();
         this.repaint();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
