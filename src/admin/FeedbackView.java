@@ -7,6 +7,7 @@ package admin;
 import db.Dbcon;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -219,9 +220,22 @@ public class FeedbackView extends javax.swing.JPanel {
             ResultSet rs = db.select(sql);
             String arr[] = new String[3];
             while (rs.next()) {
+                String id1 = rs.getString("id");
+                if (rs.getString("currentdate") == null) {
+                    long milli = Long.parseLong(rs.getString("feedbackdate"));
+                     
+                    Calendar c = Calendar.getInstance();
+                    c.setTimeInMillis(milli);
+                    String temp;
+                    temp = c.get(Calendar.YEAR) + "-" + (c.get(Calendar.MONTH) + 1) + "-" + c.get(Calendar.DAY_OF_MONTH);
+                    String sql1="update tbl_feedback set currentdate='"+temp+"' where  id='"+id1+"'";
+                     Dbcon db1 = new Dbcon();
+                    int n = db1.insert(sql1);
+                }
+                System.out.println("helloooooooo");
                 arr[0] = rs.getString("currentdate");
                 arr[1] = rs.getString("title");
-                arr[2] = rs.getString("id");
+                arr[2] = id1;
                 model.addRow(arr);
             }
             // TODO add your handling code here:
@@ -258,8 +272,8 @@ public class FeedbackView extends javax.swing.JPanel {
         String sql = "delete from tbl_feedback where id='" + id + "'";
         Dbcon db = new Dbcon();
         int n = db.insert(sql);
-      
-         FeedbackView feedbackView = new FeedbackView();
+
+        FeedbackView feedbackView = new FeedbackView();
         this.getParent().add(feedbackView);
         this.setVisible(false);
         feedbackView.setVisible(true);
