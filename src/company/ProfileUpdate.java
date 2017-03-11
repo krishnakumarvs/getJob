@@ -4,13 +4,24 @@
  */
 package company;
 
+import db.Constants;
 import db.Dbcon;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  *
@@ -78,49 +89,49 @@ public class ProfileUpdate extends javax.swing.JPanel {
         discriptionTextArea = new javax.swing.JTextArea();
         submitButton1 = new javax.swing.JButton();
         picChooseButton = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        photo_label = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24));
         jLabel1.setForeground(new java.awt.Color(0, 0, 153));
         jLabel1.setText("       PROFILE");
 
-        jLabel2.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         jLabel2.setText("Name                        :");
 
-        jLabel3.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         jLabel3.setText("Address                     :");
 
-        jLabel4.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         jLabel4.setText("Email  Id                    :");
 
-        jLabel5.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         jLabel5.setText("Phone                        :");
 
-        jLabel6.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         jLabel6.setText("Discription                 :");
 
-        nameTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        nameTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         nameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameTextFieldActionPerformed(evt);
             }
         });
 
-        addressTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        addressTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         addressTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addressTextFieldActionPerformed(evt);
             }
         });
 
-        phoneTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        phoneTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         phoneTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phoneTextFieldActionPerformed(evt);
             }
         });
 
-        emailIdTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        emailIdTextField.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         emailIdTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailIdTextFieldActionPerformed(evt);
@@ -131,7 +142,7 @@ public class ProfileUpdate extends javax.swing.JPanel {
         discriptionTextArea.setRows(5);
         jScrollPane1.setViewportView(discriptionTextArea);
 
-        submitButton1.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
+        submitButton1.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14));
         submitButton1.setText("Submit");
         submitButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,16 +157,16 @@ public class ProfileUpdate extends javax.swing.JPanel {
             }
         });
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("PHOTO");
-        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        photo_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        photo_label.setText("PHOTO");
+        photo_label.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 407, Short.MAX_VALUE)
                 .addComponent(submitButton1)
                 .addGap(41, 41, 41))
             .addGroup(layout.createSequentialGroup()
@@ -188,7 +199,7 @@ public class ProfileUpdate extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(photo_label, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
                         .addComponent(picChooseButton)))
                 .addContainerGap(33, Short.MAX_VALUE))
@@ -200,7 +211,7 @@ public class ProfileUpdate extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(photo_label, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(picChooseButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -249,7 +260,20 @@ public class ProfileUpdate extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "please enter all fields");
 
         } else {
-            String sql1 = "update tbl_company set name='" + nameTextField.getText() + "',address='" + addressTextField.getText() + "',phone_no='" + phoneTextField.getText() + "',mail_id='" + emailIdTextField.getText() + "',discription='" + discriptionTextArea.getText() + "' where id='" + id + "'";
+
+            String imageName = "";
+            if (selectedFile != null) {
+                imageName = System.currentTimeMillis() + "." + FilenameUtils.getExtension(selectedFile.getName());
+                File copyToFile = new File(Constants.external_file_location + imageName);
+                try {
+                    FileUtils.copyFile(selectedFile, copyToFile);
+                } catch (IOException e) {
+                    imageName = "";
+                }
+            }
+
+
+            String sql1 = "update tbl_company set name='" + nameTextField.getText() + "',address='" + addressTextField.getText() + "',phone_no='" + phoneTextField.getText() + "',mail_id='" + emailIdTextField.getText() + "',discription='" + discriptionTextArea.getText() + "' , photo='" + imageName + "' where id='" + id + "'";
             int n;
             Dbcon db = new Dbcon();
             db.insert(sql1);
@@ -263,14 +287,34 @@ public class ProfileUpdate extends javax.swing.JPanel {
         //this.removeAll();
         // TODO add your handling code here:
     }//GEN-LAST:event_submitButton1ActionPerformed
+    File selectedFile;
 
     private void picChooseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_picChooseButtonActionPerformed
 
-        
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG & GIF Images", "jpg", "gif");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            selectedFile = chooser.getSelectedFile();
+            String path = chooser.getSelectedFile().getPath();
+
+            BufferedImage img = null;
+            try {
+                img = ImageIO.read(new File(path));
+                Image scaledInstance = img.getScaledInstance(photo_label.getWidth(), photo_label.getHeight(), Image.SCALE_SMOOTH);
+                ImageIcon imageIcon = new ImageIcon(scaledInstance);
+                photo_label.setIcon(imageIcon);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
 
         // TODO add your handling code here:
     }//GEN-LAST:event_picChooseButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTextField;
     private javax.swing.JTextArea discriptionTextArea;
@@ -281,10 +325,10 @@ public class ProfileUpdate extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JTextField phoneTextField;
+    private javax.swing.JLabel photo_label;
     private javax.swing.JButton picChooseButton;
     private javax.swing.JButton submitButton1;
     // End of variables declaration//GEN-END:variables
