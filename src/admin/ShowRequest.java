@@ -16,48 +16,49 @@ import javax.swing.table.DefaultTableModel;
  * @author jj
  */
 public class ShowRequest extends javax.swing.JPanel {
-DefaultTableModel model;
-HomePageAdmin parentframe;
-String idTable;
+
+    DefaultTableModel model;
+    HomePageAdmin parentframe;
+    String idTable;
+
     /**
      * Creates new form ShowRequest
      */
     public ShowRequest(HomePageAdmin parentframe) {
         initComponents();
         load_request();
-         this.parentframe = parentframe;
+        this.parentframe = parentframe;
     }
-    
-    private void load_request(){
+
+    private void load_request() {
         try {
             deleteButton1.setEnabled(false);
             createButton.setEnabled(false);
-            Dbcon db=new Dbcon();
-            String sql="select id,name,address,phone_no,mail_id,website from tbl_company where status=0";
-            ResultSet rs=db.select(sql);
-            model=(DefaultTableModel)companyTable.getModel();
-            String arr[]=new String[6];
-            while(rs.next()){
-                String id=rs.getString("id");
-                String name=rs.getString("name");
-                String email=rs.getString("mail_id");
-                String phone=rs.getString("phone_no");
-                String address=rs.getString("address");
-                 String website=rs.getString("website");
-                arr[0]=id;
-                arr[1]=name;
-                arr[2]=address;
-                arr[3]=phone;
-                arr[4]=email;
-                arr[5]=website;
+            Dbcon db = new Dbcon();
+            String sql = "select id,name,address,phone_no,mail_id,website from tbl_company where status=0";
+            ResultSet rs = db.select(sql);
+            model = (DefaultTableModel) companyTable.getModel();
+            String arr[] = new String[6];
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String name = rs.getString("name");
+                String email = rs.getString("mail_id");
+                String phone = rs.getString("phone_no");
+                String address = rs.getString("address");
+                String website = rs.getString("website");
+                arr[0] = id;
+                arr[1] = name;
+                arr[2] = address;
+                arr[3] = phone;
+                arr[4] = email;
+                arr[5] = website;
                 model.addRow(arr);
-                
 
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
     }
 
     /**
@@ -141,7 +142,7 @@ String idTable;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(deleteButton1)
-                .addGap(136, 136, 136)
+                .addGap(214, 214, 214)
                 .addComponent(createButton)
                 .addGap(59, 59, 59))
         );
@@ -152,11 +153,11 @@ String idTable;
                 .addComponent(jLabel1)
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createButton)
                     .addComponent(deleteButton1))
-                .addGap(33, 33, 33))
+                .addGap(34, 34, 34))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -173,17 +174,31 @@ String idTable;
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         String sql1 = "update tbl_company set status='" + 1 + "'where id='" + idTable + "'";
-            int n;
-            Dbcon db = new Dbcon();
-            db.insert(sql1);
-            JOptionPane.showMessageDialog(this, "successfully created");
-            parentframe.getContentPane().removeAll();
-            parentframe.repaint();
-            parentframe.revalidate();
+        int n;
+        Dbcon db = new Dbcon();
+        db.insert(sql1);
+        JOptionPane.showMessageDialog(this, "successfully created");
+        ShowRequest showRequest = new ShowRequest(parentframe);
+        this.getParent().add(showRequest);
+        this.setVisible(false);
+        showRequest.setVisible(true);
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_createButtonActionPerformed
 
     private void deleteButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButton1ActionPerformed
-        // TODO add your handling code here:
+        String sql1 = "delete from tbl_company where id='" + idTable + "'";
+        int n;
+        Dbcon db = new Dbcon();
+        db.insert(sql1);
+        JOptionPane.showMessageDialog(this, "successfully deleted");
+
+        ShowRequest showRequest = new ShowRequest(parentframe);
+        this.getParent().add(showRequest);
+        this.setVisible(false);
+        showRequest.setVisible(true);
+        this.revalidate();
+        this.repaint();// TODO add your handling code here:
     }//GEN-LAST:event_deleteButton1ActionPerformed
 
 

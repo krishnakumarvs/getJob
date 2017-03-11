@@ -209,7 +209,7 @@ private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     } else {
 
 
-        String sql = "insert into tbl_company (name,mail_id,phone_no,address,username,password) values('" + name1 + "','" + email + "','" + phone + "','" + address1 + "','" + name1 + "','" + pass + "')";
+        String sql = "insert into tbl_company (name,mail_id,phone_no,address,username,password,status) values('" + name1 + "','" + email + "','" + phone + "','" + address1 + "','" + name1 + "','" + pass + "','1')";
         int ins;
         Dbcon db = new Dbcon();
         ins = db.insert(sql);

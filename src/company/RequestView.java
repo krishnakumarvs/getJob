@@ -65,14 +65,15 @@ public class RequestView extends javax.swing.JPanel {
             profileButton.setEnabled(false);
             Dbcon db = new Dbcon();
             model = (DefaultTableModel) requestTable.getModel();
-            String sql = "select * from tbl_request where companyId='" + companyId + "'";
+            String sql = "SELECT req.id,usr.name AS usrnme,usr.qualification,annou.post,req.Status ,annou.place, annou.companyId FROM tbl_request AS req, tbl_userview AS usr , tbl_announcement AS annou,tbl_company AS comp  WHERE req.user_id = usr.id AND req.ann_id = annou.id AND annou.companyId = comp.id AND annou.companyId = '" + companyId + "'";
+            System.out.println("sql " + sql);
             ResultSet rs = db.select(sql);
             String arr[] = new String[6];
             while (rs.next()) {
                 arr[0] = rs.getString("id");
-                arr[1] = rs.getString("name");
+                arr[1] = rs.getString("usrnme");
                 arr[2] = rs.getString("qualification");
-                arr[3] = rs.getString("location");
+                arr[3] = rs.getString("place");
                 arr[4] = rs.getString("post");
                 arr[5] = rs.getString("status");
                 model.addRow(arr);
