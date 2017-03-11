@@ -56,11 +56,11 @@ CREATE TABLE `tbl_company` (
   `status` int(11) DEFAULT '0' COMMENT '0- pending, 1- approved',
   `website` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_company` */
 
-insert  into `tbl_company`(`id`,`name`,`mail_id`,`phone_no`,`address`,`discription`,`password`,`username`,`image`,`status`,`website`) values (1,'Dream','dreamkochi@gamil.com','9898989898','Kochin','Most famous company in this country.\n\nIt is the highest profit earning company.\ngood','dream12345','dream',NULL,1,NULL),(4,'Pauls','paul@gmail.com','9898784758','Kochin',NULL,NULL,'Pauls',NULL,1,NULL),(6,'Musiriss','musiriss@gmail.com','5156554','Thrissure',NULL,NULL,'Musiriss',NULL,1,'musiriss.com');
+insert  into `tbl_company`(`id`,`name`,`mail_id`,`phone_no`,`address`,`discription`,`password`,`username`,`image`,`status`,`website`) values (1,'Dream','dreamkochi@gamil.com','9898989898','Kochin','Most famous company in this country.\n\nIt is the highest profit earning company.\ngood','dream12345','dream',NULL,1,NULL),(4,'Pauls','paul@gmail.com','9898784758','Kochin',NULL,NULL,'Pauls',NULL,1,NULL),(6,'Musiriss','musiriss@gmail.com','5156554','Thrissure',NULL,NULL,'Musiriss',NULL,1,'musiriss.com'),(8,'hbhbjn','uhnj','hbhjnk','hbhu',NULL,'CzPOY5a','hbhbjn',NULL,0,NULL);
 
 /*Table structure for table `tbl_feedback` */
 
@@ -76,11 +76,11 @@ CREATE TABLE `tbl_feedback` (
   `feedback` varchar(300) NOT NULL DEFAULT 'admin',
   `currentdate` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_feedback` */
 
-insert  into `tbl_feedback`(`id`,`owner`,`audence`,`title`,`discription`,`feedbackdate`,`feedback`,`currentdate`) values (18,'1','angel@gmail.com','not access','not access your site','1481959038686','company','2016-12-17'),(19,'1','manu@gmail.com','interview','your selected for interview','1481959107906','user','2016-12-17'),(20,'1','dreamkochi@gamil.com','ghfftf','fcgvjkhlkhgjhg','1482464203051','company','2016-12-23'),(21,'1','manu@gmail.com','gybfdddvhtn','ytbgvfcd','1482464732526','user','2016-12-23'),(22,'1','admin','uhytgrfedws','nhbgvfcdxsa','1482465138496','admin','2016-12-23'),(23,'1','paul@gmail.com','lkjhgfd','.,mjhgfw','1482465157378','company','2016-12-23'),(25,'1','manu@gmail.com','kjhgfdsa','LIKJHGFDSA','1482465243995','user','2016-12-23'),(32,'2','null','slow','wedsit slow','1486889132641','admin','2017-2-12'),(33,'2','admin','slow','wedsit slow','1486889205134','admin','2017-2-12'),(34,'1','--','sub111','desc1111','1488419708501','user',NULL),(35,'1','admin','sub22','descc22','1488419759977','user',NULL),(36,'1','Company 2','sub3','desc3','1488419790388','user',NULL),(37,'1','admin','rgtr','ryrt','1488702914866','user',NULL),(38,'1','Company 2','','','1488702925588','user',NULL),(39,'1','Company 2','','','1488702925614','user',NULL),(40,'1','Company 2','rgegregeg','','1488702939436','user',NULL),(41,'1','admin','sad','sds','1488706309210','user',NULL),(42,'1','Company 1','gkjhjk','hjhjkhk','1488706318168','user',NULL);
+insert  into `tbl_feedback`(`id`,`owner`,`audence`,`title`,`discription`,`feedbackdate`,`feedback`,`currentdate`) values (18,'1','angel@gmail.com','not access','not access your site','1481959038686','company','2016-12-17'),(19,'1','manu@gmail.com','interview','your selected for interview','1481959107906','user','2016-12-17'),(20,'1','dreamkochi@gamil.com','ghfftf','fcgvjkhlkhgjhg','1482464203051','company','2016-12-23'),(21,'1','manu@gmail.com','gybfdddvhtn','ytbgvfcd','1482464732526','user','2016-12-23'),(22,'1','admin','uhytgrfedws','nhbgvfcdxsa','1482465138496','admin','2016-12-23'),(23,'1','paul@gmail.com','lkjhgfd','.,mjhgfw','1482465157378','company','2016-12-23'),(25,'1','manu@gmail.com','kjhgfdsa','LIKJHGFDSA','1482465243995','user','2016-12-23'),(32,'2','admin','slow','wedsit slow','1486889132641','user','2017-2-12'),(44,'1','admin','mknj',' jhbhjbjh','1486889132641','user','2017-2-12'),(45,'1','Company 2','hbhuj','yvygh','1488854333430','user',NULL);
 
 /*Table structure for table `tbl_loginadmin` */
 
@@ -111,7 +111,7 @@ CREATE TABLE `tbl_notification` (
 
 /*Data for the table `tbl_notification` */
 
-insert  into `tbl_notification`(`id`,`userid`,`title`,`description`) values (1,1,'interview','you have interview 2 dayes later'),(2,1,'announcements','new announcement');
+insert  into `tbl_notification`(`id`,`userid`,`title`,`description`) values (1,1,'interview','you have interview 2 dayes later');
 
 /*Table structure for table `tbl_request` */
 
@@ -135,11 +135,11 @@ CREATE TABLE `tbl_request` (
   `ann_id` int(11) DEFAULT NULL,
   `date_milli` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_request` */
 
-insert  into `tbl_request`(`id`,`companyId`,`Status`,`name`,`qualification`,`post`,`location`,`experience`,`dob`,`email_id`,`age`,`address`,`phone`,`user_id`,`ann_id`,`date_milli`) values (1,1,'rejected','Ram','degree','manager','ernakulam','2 year','23-10-1996','ram@gmail.com',20,'kachapilly(h) ernakulam','+9156848756',NULL,NULL,NULL),(2,1,'Approved','Anu','degree','manager','thrissur','1 year','05-11-1997','anu@gmail.com',19,'anu nivas','245687865456',NULL,NULL,NULL),(3,1,'Approved','Priya','bcom','trainee','kollam','no','06-4-1998','priya@gmail.com',18,'priya nivas kollam','9874859612',NULL,NULL,NULL),(6,2,'Requested','Manoj','btech','programer','thrissur','3 year','05-12-1994','manoj@gmail.com',22,'kunnathuparambil','9747865703',NULL,NULL,NULL),(7,NULL,'Requested',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,NULL,'Requested',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,12,'1488564948274'),(9,NULL,'Requested',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,12,'1488565028253'),(10,NULL,'Requested',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,11,'1488710342040');
+insert  into `tbl_request`(`id`,`companyId`,`Status`,`name`,`qualification`,`post`,`location`,`experience`,`dob`,`email_id`,`age`,`address`,`phone`,`user_id`,`ann_id`,`date_milli`) values (1,1,'rejected','Ram','degree','manager','ernakulam','2 year','23-10-1996','ram@gmail.com',20,'kachapilly(h) ernakulam','+9156848756',NULL,NULL,NULL),(2,1,'Approved','Anu','degree','manager','thrissur','1 year','05-11-1997','anu@gmail.com',19,'anu nivas','245687865456',NULL,NULL,NULL),(3,1,'Approved','Priya','bcom','trainee','kollam','no','06-4-1998','priya@gmail.com',18,'priya nivas kollam','9874859612',NULL,NULL,NULL),(6,2,'Requested','Manoj','btech','programer','thrissur','3 year','05-12-1994','manoj@gmail.com',22,'kunnathuparambil','9747865703',NULL,NULL,NULL),(7,NULL,'Requested',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,NULL,'Requested',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,12,'1488564948274'),(9,NULL,'Requested',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,12,'1488565028253'),(10,NULL,'Requested',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,11,'1488710342040'),(11,NULL,'Requested',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,11,'1488809585434'),(12,NULL,'Requested',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,11,'1488854302717');
 
 /*Table structure for table `tbl_userview` */
 
@@ -162,7 +162,7 @@ CREATE TABLE `tbl_userview` (
 
 /*Data for the table `tbl_userview` */
 
-insert  into `tbl_userview`(`id`,`name`,`email_id`,`phone`,`address`,`dob`,`age`,`qualification`,`password`,`experience`,`photo`) values (1,'Manu pilai','manu@gmail.com','9588964248','Sarithas, azad road, kaloor','1994-10-08',23,'btech','mannu','3.2',NULL),(2,'sreelu',NULL,NULL,NULL,NULL,NULL,NULL,'sreelu',NULL,NULL),(3,'Akhila','akhila@gmail.com','9747865703','kunnathuparambil','24-07-1997',19,'bca','akhila','1 year',NULL),(6,'akhila','akhila@gmail.com',NULL,NULL,NULL,NULL,NULL,'akhila',NULL,NULL),(7,'akhila','akhila@gmail.com',NULL,NULL,NULL,NULL,NULL,'akhila',NULL,NULL),(8,'afegr','rghthrtg@gmail.com','19874632','fddgchbjnk','15-12-1995',NULL,'dtfghj','123','2','1488701628609.png');
+insert  into `tbl_userview`(`id`,`name`,`email_id`,`phone`,`address`,`dob`,`age`,`qualification`,`password`,`experience`,`photo`) values (1,'Manu pilai','manu@gmail.com','9588964248','Sarithas, azad road, kaloor','1994-10-08',23,'btech','mannu','3.2','1488854270145.png'),(2,'sreelu',NULL,NULL,NULL,NULL,NULL,NULL,'sreelu',NULL,NULL),(3,'Akhila','akhila@gmail.com','9747865703','kunnathuparambil','24-07-1997',19,'bca','akhila','1 year',NULL),(6,'akhila','akhila@gmail.com',NULL,NULL,NULL,NULL,NULL,'akhila',NULL,NULL),(7,'akhila','akhila@gmail.com',NULL,NULL,NULL,NULL,NULL,'akhila',NULL,NULL),(8,'afegr','rghthrtg@gmail.com','19874632','fddgchbjnk','15-12-1995',NULL,'dtfghj','123','2','1488701628609.png');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
