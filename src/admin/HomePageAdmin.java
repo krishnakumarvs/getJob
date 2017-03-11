@@ -39,6 +39,7 @@ public static int flag=0;
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        createMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -79,6 +80,14 @@ public static int flag=0;
             }
         });
         jMenu1.add(jMenuItem2);
+
+        createMenuItem6.setText("Create");
+        createMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(createMenuItem6);
 
         jMenuBar1.add(jMenu1);
 
@@ -234,6 +243,15 @@ public static int flag=0;
         }       // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void createMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createMenuItem6ActionPerformed
+ this.getContentPane().removeAll();
+        CompanyCreate companyCreate = new CompanyCreate(this);
+        this.add(companyCreate);
+        companyCreate.setVisible(true);
+        this.revalidate();
+        this.repaint();          // TODO add your handling code here:
+    }//GEN-LAST:event_createMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -270,6 +288,7 @@ public static int flag=0;
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem createMenuItem6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
