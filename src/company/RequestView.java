@@ -27,20 +27,23 @@ public class RequestView extends javax.swing.JPanel {
 
     DefaultTableModel model;
     int companyId;
+    String userId;
     String requestId;
 
     /**
      * Creates new form RequestView
      */
+    HomePageCompany parentframe;
     public RequestView() {
         initComponents();
     }
 
-    public RequestView(int id1) {
+    public RequestView(int id1,HomePageCompany parentframe) {
         initComponents();
         companyId = id1;
         loadData();
         sortStatus();
+        this.parentframe=parentframe;
 
     }
 
@@ -65,17 +68,18 @@ public class RequestView extends javax.swing.JPanel {
             profileButton.setEnabled(false);
             Dbcon db = new Dbcon();
             model = (DefaultTableModel) requestTable.getModel();
-            String sql = "SELECT req.id,usr.name AS usrnme,usr.qualification,annou.post,req.Status ,annou.place, annou.companyId FROM tbl_request AS req, tbl_userview AS usr , tbl_announcement AS annou,tbl_company AS comp  WHERE req.user_id = usr.id AND req.ann_id = annou.id AND annou.companyId = comp.id AND annou.companyId = '" + companyId + "'";
+            String sql = "SELECT req.user_id AS userid,req.id,usr.name AS usrnme,usr.qualification,annou.post,req.Status ,annou.place, annou.companyId FROM tbl_request AS req, tbl_userview AS usr , tbl_announcement AS annou,tbl_company AS comp  WHERE req.user_id = usr.id AND req.ann_id = annou.id AND annou.companyId = comp.id AND annou.companyId = '" + companyId + "'";
             System.out.println("sql " + sql);
             ResultSet rs = db.select(sql);
-            String arr[] = new String[6];
+            String arr[] = new String[7];
             while (rs.next()) {
-                arr[0] = rs.getString("id");
-                arr[1] = rs.getString("usrnme");
-                arr[2] = rs.getString("qualification");
-                arr[3] = rs.getString("place");
-                arr[4] = rs.getString("post");
-                arr[5] = rs.getString("status");
+                arr[0] = rs.getString("userid");
+                arr[1] = rs.getString("id");
+                arr[2] = rs.getString("usrnme");
+                arr[3] = rs.getString("qualification");
+                arr[4] = rs.getString("place");
+                arr[5] = rs.getString("post");
+                arr[6] = rs.getString("status");
                 model.addRow(arr);
             }
         } catch (SQLException ex) {
@@ -110,11 +114,11 @@ public class RequestView extends javax.swing.JPanel {
 
             },
             new String [] {
-                "id", "Name", "Qualification", "Location", "Post", "status"
+                "userid", "id", "Name", "Qualification", "Location", "Post", "status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -127,15 +131,20 @@ public class RequestView extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(requestTable);
-        requestTable.getColumnModel().getColumn(0).setMinWidth(0);
-        requestTable.getColumnModel().getColumn(0).setPreferredWidth(0);
-        requestTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        requestTable.getColumnModel().getColumn(3).setMinWidth(100);
-        requestTable.getColumnModel().getColumn(3).setPreferredWidth(100);
-        requestTable.getColumnModel().getColumn(3).setMaxWidth(100);
-        requestTable.getColumnModel().getColumn(4).setMinWidth(100);
-        requestTable.getColumnModel().getColumn(4).setPreferredWidth(100);
-        requestTable.getColumnModel().getColumn(4).setMaxWidth(100);
+        if (requestTable.getColumnModel().getColumnCount() > 0) {
+            requestTable.getColumnModel().getColumn(0).setMinWidth(0);
+            requestTable.getColumnModel().getColumn(0).setPreferredWidth(0);
+            requestTable.getColumnModel().getColumn(0).setMaxWidth(0);
+            requestTable.getColumnModel().getColumn(1).setMinWidth(0);
+            requestTable.getColumnModel().getColumn(1).setPreferredWidth(0);
+            requestTable.getColumnModel().getColumn(1).setMaxWidth(0);
+            requestTable.getColumnModel().getColumn(3).setMinWidth(100);
+            requestTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+            requestTable.getColumnModel().getColumn(3).setMaxWidth(100);
+            requestTable.getColumnModel().getColumn(4).setMinWidth(100);
+            requestTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+            requestTable.getColumnModel().getColumn(4).setMaxWidth(100);
+        }
 
         rejectButton.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         rejectButton.setText("Reject");
@@ -210,11 +219,21 @@ public class RequestView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void approveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveButtonActionPerformed
-        String s = "Approved";
-        String sql = "update tbl_request set status='" + s + "' where id='" + requestId + "'";
-        Dbcon db = new Dbcon();
-        int n = db.insert(sql);
-        RequestView requestView = new RequestView(companyId);
+      
+        
+//          parentframe.setEnabled(false);
+//        HomePageCompany.flag = 1;
+//        AnnouncementUpdate2 announcementUpdate2 = new AnnouncementUpdate2(idTable,parentframe);
+//        
+//        announcementUpdate2.setVisible(true);
+        
+        
+         parentframe.setEnabled(false);
+        HomePageCompany.flag = 2;
+        Approvel approvel = new Approvel(companyId,userId,requestId,parentframe);
+        
+        approvel.setVisible(true);
+        RequestView requestView = new RequestView(companyId,parentframe);
         this.getParent().add(requestView);
         this.setVisible(false);
         requestView.setVisible(true);
@@ -228,7 +247,8 @@ public class RequestView extends javax.swing.JPanel {
         if (model.getValueAt(requestTable.getSelectedRow(), 0).toString().equals("")) {
             JOptionPane.showMessageDialog(this, "No data to select");
         } else {
-            requestId = model.getValueAt(requestTable.getSelectedRow(), 0).toString();
+            requestId = model.getValueAt(requestTable.getSelectedRow(), 1).toString();
+            userId=model.getValueAt(requestTable.getSelectedRow(), 0).toString();
             rejectButton.setEnabled(true);
             deleteButton.setEnabled(true);
             profileButton.setEnabled(true);
@@ -241,7 +261,7 @@ public class RequestView extends javax.swing.JPanel {
         String sql = "update tbl_request set status='" + r + "' where id='" + requestId + "'";
         Dbcon db = new Dbcon();
         int n = db.insert(sql);
-        RequestView requestView = new RequestView(companyId);
+        RequestView requestView = new RequestView(companyId,parentframe);
         this.getParent().add(requestView);
         this.setVisible(false);
         requestView.setVisible(true);
@@ -254,7 +274,7 @@ public class RequestView extends javax.swing.JPanel {
         String sql = "delete from tbl_request where id= '" + requestId + "' ";
         Dbcon db = new Dbcon();
         int n = db.insert(sql);
-        RequestView requestView = new RequestView(companyId);
+        RequestView requestView = new RequestView(companyId,parentframe);
         this.getParent().add(requestView);
         this.setVisible(false);
         requestView.setVisible(true);
@@ -263,6 +283,12 @@ public class RequestView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+     private void formFocusGained(java.awt.event.FocusEvent evt) {                                 
+        System.out.println("Hello");
+        // TODO add your handling code here:
+    }  
+    
+    
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         HomePageCompany.flag = 2;
         ProfileViewUser profileViewUser = new ProfileViewUser(requestId);

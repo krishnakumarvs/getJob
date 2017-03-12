@@ -214,7 +214,7 @@ public class HomePageCompany extends javax.swing.JFrame {
     
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         this.getContentPane().removeAll();
-        RequestView requestView = new RequestView(id);
+        RequestView requestView = new RequestView(id,this);
         this.add(requestView);
         requestView.setVisible(true);
         this.revalidate();
@@ -278,9 +278,9 @@ public class HomePageCompany extends javax.swing.JFrame {
             announcementUpdate1.setVisible(true);
             this.revalidate();
             this.repaint();            
-        } else if (flag == 1) {
+        } else if (flag == 2) {
             this.getContentPane().removeAll();
-            RequestView requestView = new RequestView(id);
+            RequestView requestView = new RequestView(id,this);
             this.add(requestView);
             requestView.setVisible(true);
             this.revalidate();
