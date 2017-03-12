@@ -213,6 +213,10 @@ private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         int ins;
         Dbcon db = new Dbcon();
         ins = db.insert(sql);
+        
+        String recvArray [] = {email};
+        MailSender.sendFromGMail(recvArray, "Registration successfull in GetJob Application", "Welcome to GetJob .Congratulations  !!! you have registerd successfully .Your password is " + pass);
+        
         JOptionPane.showMessageDialog(this, " successfully inserted");
         parentframe.getContentPane().removeAll();
         parentframe.repaint();

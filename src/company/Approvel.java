@@ -147,7 +147,14 @@ public class Approvel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void approveButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveButton1ActionPerformed
- String sql="insert into tbl_message(userid,title,discription,company_id,interview_date,times) values('"+userid+"','"+titleTextField.getText()+"','"+discriptionTextField.getText()+"','"+companyid+"','"+dateTextField.getText()+"','"+timeTextField.getText()+"')";
+         if(titleTextField.getText().equals("")||discriptionTextField.getText().equals("")||dateTextField.getText().equals("")||timeTextField.getText().equals("")){
+             JOptionPane.showMessageDialog(this, "please enter all fields");
+        }
+        
+        else{
+        
+        
+        String sql="insert into tbl_message(userid,title,discription,company_id,interview_date,times) values('"+userid+"','"+titleTextField.getText()+"','"+discriptionTextField.getText()+"','"+companyid+"','"+dateTextField.getText()+"','"+timeTextField.getText()+"')";
         int n;
         Dbcon db=new Dbcon();
         db.insert(sql); 
@@ -157,7 +164,8 @@ public class Approvel extends javax.swing.JFrame {
         int n1 = db1.insert(sql1);
         JOptionPane.showMessageDialog(this, " Successfully Approved  ");
         enableParent();
-        this.setVisible(false);// TODO add your handling code here:
+        this.setVisible(false);
+         }// TODO add your handling code here:
     }//GEN-LAST:event_approveButton1ActionPerformed
 
     private void titleTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextFieldActionPerformed

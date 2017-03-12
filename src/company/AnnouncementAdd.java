@@ -258,7 +258,7 @@ HomePageCompany parentFrame;
         String datee;
         long datemilli=c.getTimeInMillis();
        datee = c.get(Calendar.YEAR)+"-"+(c.get(Calendar.MONTH)+1)+"-"+c.get(Calendar.DAY_OF_MONTH);
-        String sql="insert into tbl_announcement(post,vacancy,qualification,date_in_milli,place,contact,companyId,date age_limit,experience) values('"+postTextField.getText()+"','"+vacancySpinner.getValue()+"','"+qualificationTextField.getText()+"','"+datemilli+"','"+placeTextField.getText()+"','"+contactTextField.getText()+"','"+id+"','"+datee+"','"+ageTextField1.getText()+"','"+experienceTextField2.getText()+"')";
+        String sql="insert into tbl_announcement(post,vacancy,qualification,date_in_milli,place,contact,companyId,date ,age_limit,experience) values('"+postTextField.getText()+"','"+vacancySpinner.getValue()+"','"+qualificationTextField.getText()+"','"+datemilli+"','"+placeTextField.getText()+"','"+contactTextField.getText()+"','"+id+"','"+datee+"','"+ageTextField1.getText()+"','"+experienceTextField2.getText()+"')";
         int n;
         Dbcon db=new Dbcon();
         db.insert(sql);

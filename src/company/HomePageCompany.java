@@ -183,6 +183,7 @@ public class HomePageCompany extends javax.swing.JFrame {
         profileViewCompany.setVisible(true);
         this.revalidate();
         this.repaint();            // TODO add your handling code here:
+        profileViewCompany.loadProfileCompany();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
     
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed

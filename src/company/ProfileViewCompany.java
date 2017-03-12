@@ -36,9 +36,8 @@ int id;
      public ProfileViewCompany(int id1) {
         initComponents();
         id=id1;
-        loadProfileCompany();
      }
-      private void loadProfileCompany() {
+      public void loadProfileCompany() {
         try {
             String sql = "select * from tbl_company where id='" + id+ "'";
             ResultSet rs;
@@ -49,7 +48,9 @@ int id;
              addressLabel.setText(rs.getString("address"));
              phoneLabel.setText(rs.getString("phone_no"));
              emailLabel.setText(rs.getString("mail_id"));
-             discriptionLabel.setText("<html>" + rs.getString("discription").replaceAll("\n", "<br>") + "</html>");
+             if(rs.getString("discription")!=null) {
+                 discriptionLabel.setText("<html>" + rs.getString("discription").replaceAll("\n", "<br>") + "</html>");
+             }
               if (rs.getString("photo") != null) {
                     String photo = rs.getString("photo");
                     if (photo.trim().equals("")) {
@@ -59,10 +60,11 @@ int id;
                         try {
                             System.out.println("Constants.external_file_location + photo " + Constants.external_file_location + photo);
                             img = ImageIO.read(new File(Constants.external_file_location + photo));
+                            System.out.println("photo_label " + photo_label.getWidth());
                             Image scaledInstance = img.getScaledInstance(photo_label.getWidth(), photo_label.getHeight(), Image.SCALE_SMOOTH);
                             ImageIcon imageIcon = new ImageIcon(scaledInstance);
                             photo_label.setIcon(imageIcon);
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
