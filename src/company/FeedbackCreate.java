@@ -35,6 +35,7 @@ public class FeedbackCreate extends javax.swing.JPanel {
 
     public FeedbackCreate(int id1, HomePageCompany parentframe) {
         initComponents();
+         adminRadioButton.setActionCommand("admin");
         companyComboBox.setVisible(false);
        // userComboBox.setVisible(false);
         this.parentframe = parentframe;

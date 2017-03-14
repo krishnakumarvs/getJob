@@ -6,8 +6,11 @@
 package admin;
 
 import db.Dbcon;
+import java.security.SecureRandom;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +31,18 @@ public class ShowRequest extends javax.swing.JPanel {
         initComponents();
         load_request();
         this.parentframe = parentframe;
+    }
+
+    public static String createPassword(int len) {
+        String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        SecureRandom rnd = new SecureRandom();
+
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            sb.append(AB.charAt(rnd.nextInt(AB.length())));
+        }
+        return sb.toString();
+
     }
 
     private void load_request() {
@@ -173,10 +188,24 @@ public class ShowRequest extends javax.swing.JPanel {
     }//GEN-LAST:event_companyTableMouseClicked
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+        String pass = createPassword(7);
         String sql1 = "update tbl_company set status='" + 1 + "'where id='" + idTable + "'";
         int n;
         Dbcon db = new Dbcon();
         db.insert(sql1);
+        String sql = "select mail_id from tbl_company where id='" + idTable + "'";
+        ResultSet rs;
+        Dbcon db1 = new Dbcon();
+        rs = db.select(sql);
+        try {
+            if (rs.next()) {
+                String email = (rs.getString("mail_id"));
+                String recvArray[] = {email};
+                MailSender.sendFromGMail(recvArray, "Registration successfull in GetJob Application", "Welcome to GetJob .Congratulations  !!! you have registerd successfully .Your password is " + pass);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JOptionPane.showMessageDialog(this, "successfully created");
         ShowRequest showRequest = new ShowRequest(parentframe);
         this.getParent().add(showRequest);
