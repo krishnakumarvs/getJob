@@ -117,7 +117,7 @@ HomePageCompany parentFrame;
         jLabel8.setText("Age Limit                         :");
 
         jLabel9.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
-        jLabel9.setText("Expirience                       :");
+        jLabel9.setText("Experience                       :");
 
         ageTextField1.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         ageTextField1.addActionListener(new java.awt.event.ActionListener() {
