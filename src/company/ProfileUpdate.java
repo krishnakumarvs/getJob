@@ -57,8 +57,28 @@ public class ProfileUpdate extends javax.swing.JPanel {
                 addressTextField.setText(rs.getString("address"));
                 phoneTextField.setText(rs.getString("phone_no"));
                 emailIdTextField.setText(rs.getString("mail_id"));
-                discriptionTextArea.setText(rs.getString("discription"));
+               // discriptionTextArea.setText(rs.getString("discription"));
+                if(rs.getString("discription")!=null) {
+                 discriptionTextArea.setText("<html>" + rs.getString("discription").replaceAll("\n", "<br>") + "</html>");
+             }
+              if (rs.getString("photo") != null) {
+                    String photo = rs.getString("photo");
+                    if (photo.trim().equals("")) {
 
+                    } else {
+                        BufferedImage img = null;
+                        try {
+                            System.out.println("Constants.external_file_location + photo " + Constants.external_file_location + photo);
+                            img = ImageIO.read(new File(Constants.external_file_location + photo));
+                            System.out.println("photo_label " + photo_label.getWidth());
+                            Image scaledInstance = img.getScaledInstance(photo_label.getWidth(), photo_label.getHeight(), Image.SCALE_SMOOTH);
+                            ImageIcon imageIcon = new ImageIcon(scaledInstance);
+                            photo_label.setIcon(imageIcon);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
 
             }
         } catch (SQLException ex) {
@@ -241,10 +261,10 @@ public class ProfileUpdate extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(508, 508, 508)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(submitButton1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(219, 219, 219)
