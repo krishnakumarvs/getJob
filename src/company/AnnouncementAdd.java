@@ -113,6 +113,12 @@ HomePageCompany parentFrame;
             }
         });
 
+        dateXDatePicker1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateXDatePicker1ActionPerformed(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Yu Gothic Medium", 0, 14)); // NOI18N
         jLabel8.setText("Age Limit                         :");
 
@@ -284,6 +290,10 @@ parentFrame.revalidate();        // TODO add your handling code here:
     private void experienceTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_experienceTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_experienceTextField2ActionPerformed
+
+    private void dateXDatePicker1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateXDatePicker1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateXDatePicker1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageTextField1;

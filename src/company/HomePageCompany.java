@@ -192,12 +192,16 @@ public class HomePageCompany extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
     
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+
         this.getContentPane().removeAll();
         ProfileUpdate profileUpdate = new ProfileUpdate(id, this);
         this.add(profileUpdate);
         profileUpdate.setVisible(true);
         this.revalidate();
-        this.repaint();            // TODO add your handling code here:
+        this.repaint();            
+        profileUpdate.loadProfileCompany();
+
+// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
     
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed

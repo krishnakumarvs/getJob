@@ -85,7 +85,9 @@
               <EmptySpace pref="75" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
+              <Component id="resumeButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="goButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
           </Group>
@@ -150,7 +152,10 @@
                                   <Component id="jLabel10" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="goButton" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="goButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="resumeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <Component id="experienceLabel" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
@@ -330,6 +335,14 @@
           </Border>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="resumeButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Resume"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resumeButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -42,11 +42,10 @@ public class ProfileUpdate extends javax.swing.JPanel {
         initComponents();
         id = id1;
         this.parentFrame = parentFrame;
-        loadProfileCompany();
 
     }
 
-    private void loadProfileCompany() {
+    public void loadProfileCompany() {
         try {
             String sql = "select * from tbl_company where id='" + id + "' ";
             ResultSet rs;
@@ -57,7 +56,7 @@ public class ProfileUpdate extends javax.swing.JPanel {
                 addressTextField.setText(rs.getString("address"));
                 phoneTextField.setText(rs.getString("phone_no"));
                 emailIdTextField.setText(rs.getString("mail_id"));
-               // discriptionTextArea.setText(rs.getString("discription"));
+                discriptionTextArea.setText(rs.getString("discription"));
                 if(rs.getString("discription")!=null) {
                  discriptionTextArea.setText("<html>" + rs.getString("discription").replaceAll("\n", "<br>") + "</html>");
              }

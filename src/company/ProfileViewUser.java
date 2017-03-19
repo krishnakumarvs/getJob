@@ -6,6 +6,7 @@ package company;
 
 import db.Constants;
 import db.Dbcon;
+import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +26,7 @@ import javax.swing.ImageIcon;
 public class ProfileViewUser extends javax.swing.JFrame {
 
     String requestId;
+    String resumeName = "";
 
     /**
      * Creates new form ProfileViewUser
@@ -43,7 +46,7 @@ public class ProfileViewUser extends javax.swing.JFrame {
 
     private void loadUserProfile() {
         try {
-            String sql = " SELECT usr.name AS usrnme,usr.address,usr.qualification,annou.post,usr.age,usr.experience,usr.dob,usr.email_id,usr.phone,usr.photo FROM tbl_request AS req, tbl_userview AS usr , tbl_announcement AS annou,tbl_company AS comp  WHERE req.user_id = usr.id AND annou.companyId = comp.id AND req.ann_id = annou.id AND req.id  = '" + requestId + "'";
+            String sql = " SELECT usr.resume as resume, usr.name AS usrnme,usr.address,usr.qualification,annou.post,usr.age,usr.experience,usr.dob,usr.email_id,usr.phone,usr.photo FROM tbl_request AS req, tbl_userview AS usr , tbl_announcement AS annou,tbl_company AS comp  WHERE req.user_id = usr.id AND annou.companyId = comp.id AND req.ann_id = annou.id AND req.id  = '" + requestId + "'";
             Dbcon db = new Dbcon();
             ResultSet rs = db.select(sql);
             if (rs.next()) {
@@ -61,7 +64,7 @@ public class ProfileViewUser extends javax.swing.JFrame {
 
                 emailLabel.setText(rs.getString("email_id"));
                 phoneLabel.setText(rs.getString("phone"));
-                
+                resumeName = rs.getString("resume");
                  if (rs.getString("photo") != null) {
                     String photo = rs.getString("photo");
                     if (photo.trim().equals("")) {
@@ -118,6 +121,7 @@ public class ProfileViewUser extends javax.swing.JFrame {
         qualificationLabel = new javax.swing.JLabel();
         postLabel = new javax.swing.JLabel();
         photo_label = new javax.swing.JLabel();
+        resumeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -182,6 +186,13 @@ public class ProfileViewUser extends javax.swing.JFrame {
         photo_label.setText("PHOTO");
         photo_label.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        resumeButton.setText("Resume");
+        resumeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resumeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,7 +245,9 @@ public class ProfileViewUser extends javax.swing.JFrame {
                         .addComponent(photo_label, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(75, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(176, 176, 176)
+                .addComponent(resumeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(goButton)
                 .addGap(141, 141, 141))
         );
@@ -286,7 +299,9 @@ public class ProfileViewUser extends javax.swing.JFrame {
                                     .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(goButton))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(goButton)
+                                    .addComponent(resumeButton)))
                             .addComponent(experienceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(postLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -298,6 +313,21 @@ public class ProfileViewUser extends javax.swing.JFrame {
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
         this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_goButtonActionPerformed
+
+    private void resumeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resumeButtonActionPerformed
+
+        System.out.println("resumeName " + resumeName);
+        
+        String resumePath = Constants.external_file_location + resumeName;
+        System.out.println("resumePath " + resumePath);
+        File f = new File(resumePath);
+        try {
+            Desktop.getDesktop().open(f);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Resume not found");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resumeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,5 +385,6 @@ public class ProfileViewUser extends javax.swing.JFrame {
     private javax.swing.JLabel photo_label;
     private javax.swing.JLabel postLabel;
     private javax.swing.JLabel qualificationLabel;
+    private javax.swing.JButton resumeButton;
     // End of variables declaration//GEN-END:variables
 }
